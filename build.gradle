@@ -35,6 +35,7 @@ subprojects {
             }
         }
         outputDir = file("${rootDir}/docs")
+        backends = ["html5", "pdf"]
     }
 
 }
