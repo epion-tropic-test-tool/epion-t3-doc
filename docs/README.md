@@ -1,4 +1,4 @@
-<a href="http://ettt.t-zomu.com"><img src="https://epion-tropic-test-tool.github.io/epion-t3/_media/epion-t3.svg" width="168.5px"/></a>
+<a href="http://ettt.t-zomu.com"><img src="https://epion-tropic-test-tool.github.io/epion-t3/media/logo-xsmall.svg" width="168.5px"/></a>
 
 
 [![Build Status](https://travis-ci.org/xdrop/jRand.svg?branch=master)](https://travis-ci.org/xdrop/jRand)
