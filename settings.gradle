@@ -15,5 +15,5 @@ include 'api'
 include 'services:webservice'
 */
 
-rootProject.name = 't3-doc'
-include 'docs'
+rootProject.name = 'epion-t3-doc'
+include 'docsdev'
