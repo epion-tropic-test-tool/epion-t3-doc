@@ -1,6 +1,6 @@
 <!-- _coverpage.md -->
 
-![logo](media/epion-t3.svg)
+![logo](media/logo-small.svg)
 
 # ETTT <small>0.0.1-beta</small>
 
