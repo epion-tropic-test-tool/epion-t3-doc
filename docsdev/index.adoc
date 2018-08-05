@@ -1,5 +1,9 @@
-= Epion-Tropic-Test-Tool (ETTT)
-:toc:
+= Epion-Tropic-Test-Tool Documents
+:lang: ja
+:toc: left
+:author: takashno
+:source-highlighter: coderay
+:imagesdir: ./_images
 
 // What Is This
 :leveloffset: +1

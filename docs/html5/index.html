@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
 <meta charset="UTF-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.4">
-<title>Epion-Tropic-Test-Tool (ETTT)</title>
+<meta name="author" content="takashno">
+<title>Epion-Tropic-Test-Tool Documents</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -416,11 +417,105 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 .hide-for-print{display:none!important}
 .show-for-print{display:inherit!important}}
 </style>
+<style>
+/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+/*pre.CodeRay {background-color:#f7f7f8;}*/
+.CodeRay .line-numbers{border-right:1px solid #d8d8d8;padding:0 0.5em 0 .25em}
+.CodeRay span.line-numbers{display:inline-block;margin-right:.5em;color:rgba(0,0,0,.3)}
+.CodeRay .line-numbers strong{color:rgba(0,0,0,.4)}
+table.CodeRay{border-collapse:separate;border-spacing:0;margin-bottom:0;border:0;background:none}
+table.CodeRay td{vertical-align: top;line-height:1.45}
+table.CodeRay td.line-numbers{text-align:right}
+table.CodeRay td.line-numbers>pre{padding:0;color:rgba(0,0,0,.3)}
+table.CodeRay td.code{padding:0 0 0 .5em}
+table.CodeRay td.code>pre{padding:0}
+.CodeRay .debug{color:#fff !important;background:#000080 !important}
+.CodeRay .annotation{color:#007}
+.CodeRay .attribute-name{color:#000080}
+.CodeRay .attribute-value{color:#700}
+.CodeRay .binary{color:#509}
+.CodeRay .comment{color:#998;font-style:italic}
+.CodeRay .char{color:#04d}
+.CodeRay .char .content{color:#04d}
+.CodeRay .char .delimiter{color:#039}
+.CodeRay .class{color:#458;font-weight:bold}
+.CodeRay .complex{color:#a08}
+.CodeRay .constant,.CodeRay .predefined-constant{color:#008080}
+.CodeRay .color{color:#099}
+.CodeRay .class-variable{color:#369}
+.CodeRay .decorator{color:#b0b}
+.CodeRay .definition{color:#099}
+.CodeRay .delimiter{color:#000}
+.CodeRay .doc{color:#970}
+.CodeRay .doctype{color:#34b}
+.CodeRay .doc-string{color:#d42}
+.CodeRay .escape{color:#666}
+.CodeRay .entity{color:#800}
+.CodeRay .error{color:#808}
+.CodeRay .exception{color:inherit}
+.CodeRay .filename{color:#099}
+.CodeRay .function{color:#900;font-weight:bold}
+.CodeRay .global-variable{color:#008080}
+.CodeRay .hex{color:#058}
+.CodeRay .integer,.CodeRay .float{color:#099}
+.CodeRay .include{color:#555}
+.CodeRay .inline{color:#000}
+.CodeRay .inline .inline{background:#ccc}
+.CodeRay .inline .inline .inline{background:#bbb}
+.CodeRay .inline .inline-delimiter{color:#d14}
+.CodeRay .inline-delimiter{color:#d14}
+.CodeRay .important{color:#555;font-weight:bold}
+.CodeRay .interpreted{color:#b2b}
+.CodeRay .instance-variable{color:#008080}
+.CodeRay .label{color:#970}
+.CodeRay .local-variable{color:#963}
+.CodeRay .octal{color:#40e}
+.CodeRay .predefined{color:#369}
+.CodeRay .preprocessor{color:#579}
+.CodeRay .pseudo-class{color:#555}
+.CodeRay .directive{font-weight:bold}
+.CodeRay .type{font-weight:bold}
+.CodeRay .predefined-type{color:inherit}
+.CodeRay .reserved,.CodeRay .keyword {color:#000;font-weight:bold}
+.CodeRay .key{color:#808}
+.CodeRay .key .delimiter{color:#606}
+.CodeRay .key .char{color:#80f}
+.CodeRay .value{color:#088}
+.CodeRay .regexp .delimiter{color:#808}
+.CodeRay .regexp .content{color:#808}
+.CodeRay .regexp .modifier{color:#808}
+.CodeRay .regexp .char{color:#d14}
+.CodeRay .regexp .function{color:#404;font-weight:bold}
+.CodeRay .string{color:#d20}
+.CodeRay .string .string .string{background:#ffd0d0}
+.CodeRay .string .content{color:#d14}
+.CodeRay .string .char{color:#d14}
+.CodeRay .string .delimiter{color:#d14}
+.CodeRay .shell{color:#d14}
+.CodeRay .shell .delimiter{color:#d14}
+.CodeRay .symbol{color:#990073}
+.CodeRay .symbol .content{color:#a60}
+.CodeRay .symbol .delimiter{color:#630}
+.CodeRay .tag{color:#008080}
+.CodeRay .tag-special{color:#d70}
+.CodeRay .variable{color:#036}
+.CodeRay .insert{background:#afa}
+.CodeRay .delete{background:#faa}
+.CodeRay .change{color:#aaf;background:#007}
+.CodeRay .head{color:#f8f;background:#505}
+.CodeRay .insert .insert{color:#080}
+.CodeRay .delete .delete{color:#800}
+.CodeRay .change .change{color:#66f}
+.CodeRay .head .head{color:#f4f}
+</style>
 </head>
-<body class="article">
+<body class="article toc2 toc-left">
 <div id="header">
-<h1>Epion-Tropic-Test-Tool (ETTT)</h1>
-<div id="toc" class="toc">
+<h1>Epion-Tropic-Test-Tool Documents</h1>
+<div class="details">
+<span id="author" class="author">takashno</span><br>
+</div>
+<div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#_what_s_this">What&#8217;s This</a>
@@ -546,71 +641,71 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h4 id="_yamlの基本構成">YAMLの基本構成</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml"># ツールバージョン
-t3 : 1.0
-type : {scenario|parts|config}
+<pre class="CodeRay highlight"><code data-lang="yaml"><span class="comment"># ツールバージョン</span>
+<span class="key">t3</span> : <span class="string"><span class="content">1.0</span></span>
+<span class="key">type</span> : <span class="string"><span class="content">{scenario|parts|config}</span></span>
 
-# 情報
-info :
-   version : {scenario_version}
-   id : {scenario_id|parts_id}
-   summary: {scenario_summary|scenario_summary}
-   description: {scenario_description|scenario_description}
+<span class="comment"># 情報</span>
+<span class="key">info</span> :
+   <span class="key">version</span> : <span class="string"><span class="content">{scenario_version}</span></span>
+   <span class="key">id</span> : <span class="string"><span class="content">{scenario_id|parts_id}</span></span>
+   <span class="key">summary</span>: <span class="string"><span class="content">{scenario_summary|scenario_summary}</span></span>
+   <span class="key">description</span>: <span class="string"><span class="content">{scenario_description|scenario_description}</span></span>
 
-# 処理フロー
-flows :
-  - ref : {reference scenario_process_id}
-    type : {scenario|process}
+<span class="comment"># 処理フロー</span>
+<span class="key">flows</span> :
+  - <span class="string"><span class="content">ref : {reference scenario_process_id}</span></span>
+    <span class="key">type</span> : <span class="string"><span class="content">{scenario|process}</span></span>
 
-# 処理定義（前後処理・実行・エビデンス取得・アサート）
-processes :
-  - id : {scenario_process_id}
-    summary : {scenario_process_summary}
-    description : {scenario_process_description}
-    command : {command}
-    # 以降はコマンドによって異なる
+<span class="comment"># 処理定義（前後処理・実行・エビデンス取得・アサート）</span>
+<span class="key">processes</span> :
+  - <span class="string"><span class="content">id : {scenario_process_id}</span></span>
+    <span class="key">summary</span> : <span class="string"><span class="content">{scenario_process_summary}</span></span>
+    <span class="key">description</span> : <span class="string"><span class="content">{scenario_process_description}</span></span>
+    <span class="key">command</span> : <span class="string"><span class="content">{command}</span></span>
+    <span class="comment"># 以降はコマンドによって異なる</span>
 
-############################################################
-#    # 外部コマンド参照を行う場合
-#    ref :
-#      id : {reference scenario_component_id}
-#      # 引数定義
-#      args :
-#        # キー：値として定義する
-#        - {name} : {value}
-#      # 結果定義（変数としてストアする）
-#      results :
-#        # キー：変数名として定義する
-#        - {name} : {variable_name}
-############################################################
+<span class="comment">############################################################</span>
+<span class="comment">#    # 外部コマンド参照を行う場合</span>
+<span class="comment">#    ref :</span>
+<span class="comment">#      id : {reference scenario_component_id}</span>
+<span class="comment">#      # 引数定義</span>
+<span class="comment">#      args :</span>
+<span class="comment">#        # キー：値として定義する</span>
+<span class="comment">#        - {name} : {value}</span>
+<span class="comment">#      # 結果定義（変数としてストアする）</span>
+<span class="comment">#      results :</span>
+<span class="comment">#        # キー：変数名として定義する</span>
+<span class="comment">#        - {name} : {variable_name}</span>
+<span class="comment">############################################################</span>
 
-# 変数
-variables :
-  # 全体変数
-  global :
-    {name} : {initial_value}
-  # メインシナリオ内変数
-  scenario :
-    {name} : {initial_value}
-  # ファイル内変数
-  local :
-    {name} : {initial_value}
+<span class="comment"># 変数</span>
+<span class="key">variables</span> :
+  <span class="comment"># 全体変数</span>
+  <span class="key">global</span> :
+    {<span class="key">name}</span> : <span class="string"><span class="content">{initial_value}</span></span>
+  <span class="comment"># メインシナリオ内変数</span>
+  <span class="key">scenario</span> :
+    {<span class="key">name}</span> : <span class="string"><span class="content">{initial_value}</span></span>
+  <span class="comment"># ファイル内変数</span>
+  <span class="key">local</span> :
+    {<span class="key">name}</span> : <span class="string"><span class="content">{initial_value}</span></span>
 
-# プロファイル定義
-profiles :
-  # プロファイル名
-  {profile_name} :
-    # キー：値として定義する
-    {name} : {value}
+<span class="comment"># プロファイル定義</span>
+<span class="key">profiles</span> :
+  <span class="comment"># プロファイル名</span>
+  {<span class="key">profile_name}</span> :
+    <span class="comment"># キー：値として定義する</span>
+    {<span class="key">name}</span> : <span class="string"><span class="content">{value}</span></span>
 
-# カスタム定義
-customs :
-  command :
-    # カスタム機能名とカスタム機能を作成したパッケージをキー：値として定義する
-    {custom_name} : {package}
+<span class="comment"># カスタム定義</span>
+<span class="key">customs</span> :
+  <span class="key">command</span> :
+    <span class="comment"># カスタム機能名とカスタム機能を作成したパッケージをキー：値として定義する</span>
+    {<span class="key">custom_name}</span> : <span class="string"><span class="content">{package}</span></span>
 
-#
-definitions :</code></pre>
+<span class="comment">#</span>
+<span class="key">definitions</span> :</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -738,7 +833,7 @@ ETTTでは、誰でも独自に作成ができるようにインターフェー�
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-08-05 16:51:56 +09:00
+Last updated 2018-08-05 17:49:40 +09:00
 </div>
 </div>
 </body>
