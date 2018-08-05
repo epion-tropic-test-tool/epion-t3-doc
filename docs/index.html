@@ -24,13 +24,15 @@
     window.$docsify = {
         name: 'epion-t3',
         repo: 'https://github.com/epion-tropic-test-tool/epion-t3',
-        coverpage: true,
+        coverpage: {
+            '/' : 'coverpage.md'
+        },
         search : [
             '/',            // => /README.md
         ]
     }
 </script>
-<script src="./libs/docsify.min.js"></script>
+<script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
 <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
 <script src="//unpkg.com/prismjs/components/prism-bash.min.js"></script>
 <script src="./libs/prism-customjava.js"></script>
