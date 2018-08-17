@@ -1,13 +1,10 @@
 ![ETTT](media/logo-xsmall.svg)
-![color](#fefff4)
 
-# What's This
-
-## 概要
-このツールは、次世代回帰試験ツールです。  
-テストの効率化を目的とした扱いやすい(自分にとって)テストツールです。  
-簡単に言うとテストシナリオをYAMLに記載し、ツールに与えることでテストを走行させるというものです。  
-また、このツールはキーワード駆動テストを行うための手段として用いれるようにすることを目標としています。  
+# What Is ETTT?
+Epion Tropic Test Tool (略称 : ETTT) は、次世代回帰試験ツールです。  
+テストの効率化を目的として、できるだけ扱いやすくしたテストツールです。  
+簡単に言うとテストを行いたい内容をシナリオと呼ばれる独自仕様のYAMLに記載し、ツールに与えることでテストを走行させるというものです。  
+ETTTはキーワード駆動テストを行うための手段として用いれるようにすることを目標としています。  
 最終的には「ISO/IEC/IEEE 29119-5:2016」に準拠したソフトウェアを作成したいと考えています。  
 
 
@@ -33,25 +30,130 @@
 このツールの使い方やカスタム方法の説明を行う前に、概念を説明します。  
 用語を含め目線を合わせる必要があります。  
 
-## アクター
+## Glossary
 
-ツール上での登場人物を整理します。
+以下はETTT上での用語集になります。
 
-|名称|説明|
-|---|---|
-|シナリオ|テストツールに対してユーザが与える指示の総称にして実行単位です。|
-|フロー|シナリオ中でどんなプロセスをどんな順序で実行するかを指示するものです。|
-|プロセス|シナリオ中で実行する処理指示の最小単位です。コマンドを利用する単位となります。|
-|コマンド|実際に実行する処理です。コマンドは汎用的に作成されており、細かい指示はプロセスの定義で行います。|
+|名称|読み|説明|
+|---|---|---|
+|Scenario|シナリオ|テストツールに対してユーザが与える指示の総称にして実行単位です。|
+|Flow|フロー|シナリオ中でどんなコマンドをどんな順序で実行するかを指示するものです。他にもフローは制御処理を行うことが可能です。|
+|Command|コマンド|実際に実行する処理です。|
+|TestData|データ||
+|Expected|エクスペクテッド||
+|Actual|アクチュアル||
+|Assertion|アサーション||
 
-上記アクター定義のみではよくわからないかもしれません。  
-シナリオは、どのコマンドをどのようなパラメータで実行するかを定義（プロセス）したものを、
-どのような順序で実行するか定義（フロー）しているものです。
+
+# Specification
+
+ETTTの独自仕様のYAMLを記載する必要があります。  
+本章では、その独自仕様について説明を行います。
+
+## Basic Structure
+ETTTの基本構文は以下の通りになります。   
+全てを１つのYAMLに表現することも可能ですが、後述するディレクトリ構成の説明にある通り、用途毎に分割して管理することを推奨しています。  
+
+```yaml
+t3 : 1.0
+type : scenario || parts || config
+
+info :
+   version : Scenario-Version
+   id : Scenario-Unique-ID
+   summary: Optional Execute Scenario Summary.
+   description:  Optional Execute Scenario Full Description.
+
+flows :
+  - id: Flow-Unique-ID
+    type : FlowType 
+
+commands :
+  - id : Command-Unique-ID
+    command : ExecuteCommandName
+    summary : Optional Command Execute Summary. 
+    description : Optional Command Execute Full Description.
+
+variables :
+  global :
+    {Unique-Key} : Initial Value
+  scenario :
+    {Unique-Key} : Initial Value
+
+profiles :
+  {Unique-Profile-Name} :
+    {Unique-Key} : Fix Value
+
+customs :
+  command :
+    {Custom Unique Name} : Custom Package
+
+
+```
+
+YAMLのキーが `{Key}` のように記載されているものはユーザが定義する任意の値となります。
+
+
+### Basic Information
+
+```yaml
+info :
+   version : Scenario-Version
+   id : Scenario-Unique-ID
+   summary: Optional Execute Scenario Summary.
+   description:  Optional Execute Scenario Full Description.
+```
+
+
+## Basic Directory Structure
+ETTTは様々な１つのYAMLで全てを表すこともできますが、  
+シナリオのメンテナンス性や複数人で作成する場合の運用を考慮する場合、  
+細かく用途によってファイルを分割・配置することを推奨します。  
+また、これらのシナリオはGitやSubversionによるバージョン管理を行うことが重要です。
+
+```
+root
+ |
+ |-- parts
+ |     |
+ |     `-- {Parts-Unique-ID}
+ |           |
+ |           |-- t3-{Parts-Unique-ID}.yaml
+ |           |
+ |           |-- data
+ |           |     |-- excel_data.xlsx
+ |           |     `-- etc...
+ |           |
+ |           `-- assert
+ |                 |-- excel_data.xlsx
+ |                 `-- etc...
+ |
+ |-- scenarios
+ |     |
+ |     `-- {Scenario-Unique-ID}
+ |           |
+ |           |-- t3-{Scenario-Unique-ID}.yaml
+ |           |
+ |           |-- data
+ |           |     |-- excel_data.xlsx
+ |           |     `-- etc...
+ |           |
+ |           `-- assert
+ |                 |-- excel_data.xlsx
+ |                 `-- etc...
+ |-- profiles
+ |     |
+ |     `-- t3-{ProfileName}.yaml
+ |
+ |
+ `-- customs
+       |
+       `-- t3-custom.yaml
+
+```
 
 
 # How To Use
-
-## 概要
 
 ## 前提
 このツールを利用するにあたり、以下の環境が整っていることを確認してください。
@@ -61,136 +163,6 @@
 |---|---|
 |Java|Javaの1.8以上がインストールされており、パスが通っていることを確認してください。|
 
-
-## YAMLの作成
-YAMLはテキストエディタでの完全手作業による作成となっています。 +
-
-
-### YAMLの基本構成
-YAMLには細かく構文が存在します。  
-全てを１つのYAMLに表現することも可能ですが、後述するディレクトリ構成の説明にある通り、用途毎に分割して管理することをお勧めします。
-
-```yaml
-# ツールバージョン
-t3 : 1.0
-type : {scenario|parts|config}
-
-# 情報
-info :
-   version : {scenario_version}
-   id : {scenario_id|parts_id}
-   summary: {scenario_summary|scenario_summary}
-   description: {scenario_description|scenario_description}
-
-# 処理フロー
-flows :
-  - ref : {reference scenario_process_id}
-    type : {scenario|process|control}
-    condition: TODO
-    children:
-     - ref : {reference scenario_process_id}
-       type : {scenario|process|control}
-     - ref : {reference scenario_process_id}
-       type : {scenario|process|control} 
-
-# 処理定義（前後処理・実行・エビデンス取得・アサート）
-processes :
-  - id : {scenario_process_id}
-    summary : {scenario_process_summary}
-    description : {scenario_process_description}
-    command : {command}
-    # 以降はコマンドによって異なる
-
-############################################################
-#    # 外部コマンド参照を行う場合
-#    ref :
-#      id : {reference scenario_component_id}
-#      # 引数定義
-#      args :
-#        # キー：値として定義する
-#        - {name} : {value}
-#      # 結果定義（変数としてストアする）
-#      results :
-#        # キー：変数名として定義する
-#        - {name} : {variable_name}
-############################################################
-
-# 変数
-variables :
-  # 全体変数
-  global :
-    {name} : {initial_value}
-  # メインシナリオ内変数
-  scenario :
-    {name} : {initial_value}
-  # ファイル内変数
-  local :
-    {name} : {initial_value}
-
-# プロファイル定義
-profiles :
-  # プロファイル名
-  {profile_name} :
-    # キー：値として定義する
-    {name} : {value}
-
-# カスタム定義
-customs :
-  command :
-    # カスタム機能名とカスタム機能を作成したパッケージをキー：値として定義する
-    {custom_name} : {package}
-
-#
-definitions :
-
-
-```
-
-上記構造は、ファイルに記載できる全ての要素となっている。 +
-実際はファイルを分割し、用途毎に作成する。
-
-
-
-## ディレクトリ構成のベストプラクティス
-ETTTは様々な１つのYAMLで全てを表すこともできますが、 +
-シナリオのメンテナンス性や複数人で作成する場合の運用を考慮する場合、 +
-細かく用途によってファイルを分割・配置することを推奨します。 +
-また、これらのシナリオはGitやSubversionによるバージョン管理を行うことが重要でしょう。
-
-```
-root
- |
- |-- parts
- |     |
- |     `-- {parts_id}
- |           |-- parts.yaml (ex: {parts_id}.yaml)
- |           |-- data
- |           |     |-- excel_data.xlsx
- |           |     `-- etc...
- |           `-- assert
- |                 |-- excel_data.xlsx
- |                 `-- etc...
- |
- |-- scenarios
- |     |
- |     `-- {scenario_id}
- |           |-- scenario.yaml (ex: {scenario_id}.yaml)
- |           |-- data
- |           |     |-- excel_data.xlsx
- |           |     `-- etc...
- |           `-- assert
- |                 |-- excel_data.xlsx
- |                 `-- etc...
- |-- profiles
- |     |
- |     `-- profile.yaml or {profile_name}.yaml
- |
- |
- `-- definitions
-       |
-       `-- {definitions}
-
-```
 
 
 ## ツールの起動
