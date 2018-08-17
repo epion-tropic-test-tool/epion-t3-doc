@@ -245,8 +245,8 @@ CommandのModelクラスを実装するためには、`com.zomu.t.epion.tropic.t
 以下に実装例を示します。
 
 
-```java:StringConcat.java
-// omitted
+```java
+package com.zomu.t.epion.tropic.test.tool.basic.command.model;
 
 import com.zomu.t.epion.tropic.test.tool.basic.command.runner.StringConcatRunner;
 import com.zomu.t.epion.tropic.test.tool.core.annotation.CommandDefinition;
@@ -267,11 +267,15 @@ public class StringConcat extends Command {
 }
 ```
 
+このModelクラスは文字列結合を行うための`StringConcat`コマンドの実際の実装コードになります。
+それぞれの実装ポイントについて以下で説明します。
+実際に`ETTT`ではボイラープレートコードの排除のため[`Lombok`](https://projectlombok.org/)を利用しています。
+
 |#|Description|
-|---|---|
+|:---|:---|
 |1|idにはCommandの名前を設定します。このidは重複すると`ETTT`が意図せぬ挙動を行う場合がありますので命名する際には一意性に気をつけてください。|
 |2|runnerにはCommandの実処理を行うRunnerクラスを設定します。`ETTT`では起動時に`@CommandDefinition`アノテーションからModelクラスとRunnerクラスを紐づける時に利用します。|
-|3|カスタマイズしたい処理に必要な情報を得るためのフィールドを定義します。BeanVaridationを行うことができます。`ETTT`では軽量な`Apache BVal`を利用しています。|
+|3|カスタマイズしたい処理に必要な情報を得るためのフィールドを定義します。BeanVaridationを行うことができます。`ETTT`では軽量な[`Apache BVal`](http://bval.apache.org/)を利用しています。|
 
 
 ### Runnerの作成
