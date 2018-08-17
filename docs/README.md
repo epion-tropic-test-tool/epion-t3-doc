@@ -242,8 +242,19 @@ ModelはYAMLの定義を読み込むためのJavaBeansです。RunnerはYAMLか�
 ### Modelの作成
 CommandのModelクラスを実装するためには、`com.zomu.t.epion.tropic.test.tool.core.model.scenario.Command`クラスを継承する必要があります。
 また、Commandであることを示すための`com.zomu.t.epion.tropic.test.tool.core.annotation.Command`アノテーションを付与する必要があります。
-以下に実装例を示します。
+先ずはModelクラスの作成の前にスーパークラスである`com.zomu.t.epion.tropic.test.tool.core.model.scenario.Command`クラスの仕様を理解する必要があります。
 
+|Field|Type|Required|Description|
+|:---|:---|:---|:---|
+|id|String|Yes||
+|summary|String|No||
+|description|String|No||
+|command|String|Yes||
+|target|String|No||
+|value|String|No||
+
+
+次にカスタマイズする祭のModelクラスの実装例を示します。
 
 ```java
 package com.zomu.t.epion.tropic.test.tool.basic.command.model;
@@ -276,6 +287,20 @@ public class StringConcat extends Command {
 |1|idにはCommandの名前を設定します。このidは重複すると`ETTT`が意図せぬ挙動を行う場合がありますので命名する際には一意性に気をつけてください。|
 |2|runnerにはCommandの実処理を行うRunnerクラスを設定します。`ETTT`では起動時に`@CommandDefinition`アノテーションからModelクラスとRunnerクラスを紐づける時に利用します。|
 |3|カスタマイズしたい処理に必要な情報を得るためのフィールドを定義します。BeanVaridationを行うことができます。`ETTT`では軽量な[`Apache BVal`](http://bval.apache.org/)を利用しています。|
+
+このModelクラスに対するYAMLの定義例は以下のようになります。
+
+```yaml
+commands:
+ - id: sample-command
+   summary : "メールアドレス作成"
+   description: "2つの文字列(固定もしくは変数)を結合してメールアドレスを作成します"
+   command: "StringConcat"
+   target : "mailaddress"
+   referenceVariables : ["scenario.username", "@example.ettt.com"]
+```
+このようにスーパークラスである`com.zomu.t.epion.tropic.test.tool.core.model.scenario.Command`クラスのフィールドも利用することができますので、
+どのフィールドをどのような用途で利用するかは自由です。
 
 
 ### Runnerの作成
