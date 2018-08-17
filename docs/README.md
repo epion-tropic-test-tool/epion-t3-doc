@@ -186,11 +186,11 @@ root
 ```
 
 # How To Customize
-ETTTは具備している機能では足りない場合や、振る舞いを変更したい場合に自分自身でカスタマイズすることができるようになっています。
-ETTTをカスタマイズするためには、Javaでの実装を行う必要があります。
+`ETTT`は具備している機能では足りない場合や、振る舞いを変更したい場合に自分自身でカスタマイズすることができるようになっています。
+`ETTT`をカスタマイズするためには、Javaでの実装を行う必要があります。
 
 ## 前提
-ETTTをカスタマイズするには以下の環境が整っている必要があります。
+`ETTT`をカスタマイズするには以下の環境が整っている必要があります。
 
 |ソフトウェア|内容|
 |---|---|
@@ -232,7 +232,7 @@ Flowはシナリオの動作を制御するためのものです。
 
 ## Command
 Commandはシナリオにおける実際の動作を行うものです。  
-このCommandをカスタマイズすることによってETTTで任意の動作を行えるようにできます。  
+このCommandをカスタマイズすることによって`ETTT`で任意の動作を行えるようにできます。  
 
 ### CommandにおけるModelとRunner
 Commandのカスタマイズを行うためには、ModelクラスとRunnerクラスを1対1の関係性で作成する必要があります。
@@ -245,26 +245,33 @@ CommandのModelクラスを実装するためには、`com.zomu.t.epion.tropic.t
 以下に実装例を示します。
 
 
-```java
+```java:StringConcat.java
 // omitted
 
 import com.zomu.t.epion.tropic.test.tool.basic.command.runner.StringConcatRunner;
+import com.zomu.t.epion.tropic.test.tool.core.annotation.CommandDefinition;
 import com.zomu.t.epion.tropic.test.tool.core.model.scenario.Command;
 import org.apache.bval.constraints.NotEmpty;
 import java.util.List;
 
-@com.zomu.t.epion.tropic.test.tool.core.annotation.Command(id = "StringConcat", runner = StringConcatRunner.class)
+@CommandDefinition(
+        id = "StringConcat", /* (1) */
+        runner = StringConcatRunner.class) /* (2) */
 public class StringConcat extends Command {
 
   @NotEmpty
-  private List<String> referenceVariables; /* (1) */
+  private List<String> referenceVariables; /* (3) */
 
 // omitted Getter And Setter Methods
 
 }
 ```
 
-
+|#|Description|
+|---|---|
+|1|idにはCommandの名前を設定します。このidは重複すると`ETTT`が意図せぬ挙動を行う場合がありますので命名する際には一意性に気をつけてください。|
+|2|runnerにはCommandの実処理を行うRunnerクラスを設定します。`ETTT`では起動時に`@CommandDefinition`アノテーションからModelクラスとRunnerクラスを紐づける時に利用します。|
+|3|カスタマイズしたい処理に必要な情報を得るためのフィールドを定義します。BeanVaridationを行うことができます。`ETTT`では軽量な`Apache BVal`を利用しています。|
 
 
 ### Runnerの作成
