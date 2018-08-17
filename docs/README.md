@@ -1,14 +1,13 @@
 ![ETTT](media/logo-xsmall.svg)
 
 # What Is ETTT?
-Epion Tropic Test Tool (略称 : ETTT) は、次世代回帰試験ツールです。  
-テストの効率化を目的として、できるだけ扱いやすくしたテストツールです。  
+Epion Tropic Test Tool (略称 : ETTT) はテストの効率化を目的として、できるだけ扱いやすくしたテストツールです。  
 簡単に言うとテストを行いたい内容をシナリオと呼ばれる独自仕様のYAMLに記載し、ツールに与えることでテストを走行させるというものです。  
 ETTTはキーワード駆動テストを行うための手段として用いれるようにすることを目標としています。  
 最終的には「ISO/IEC/IEEE 29119-5:2016」に準拠したソフトウェアを作成したいと考えています。  
 
 
-## 機能
+## Function Overview
 
 このツールが保有する機能の大まかな一覧は以下です。
 
@@ -186,11 +185,9 @@ root
  |                 `-- etc...
 ```
 
-# Customize
-
-## 概要
-ETTTは具備している機能では足りない場合や、振る舞いを変更したい場合に
-自分自身でカスタマイズすることができるようになっています。
+# How To Customize
+ETTTは具備している機能では足りない場合や、振る舞いを変更したい場合に自分自身でカスタマイズすることができるようになっています。
+ETTTをカスタマイズするためには、Javaでの実装を行う必要があります。
 
 ## 前提
 ETTTをカスタマイズするには以下の環境が整っている必要があります。
@@ -199,6 +196,80 @@ ETTTをカスタマイズするには以下の環境が整っている必要が�
 |---|---|
 |Java|ETTTのエンジンはJavaで作成されています。Javaの1.8以上がインストールされており、パスが通っていることを確認してください。|
 |Gradle|ETTTのビルドに利用します。バージョン4以降を推奨しています。|
+
+
+## Project
+`ETTT` をカスタマイズするためのプロジェクトの構築方法について説明します。
+本章では`Gradle`をベースに説明をします。ビルドシステムは`Gradle`が必須というわけではありませんので好みに応じて`Maven`等をご利用ください。　
+
+
+### build.gradleの例
+
+```groovy
+
+// omitted
+
+dependencies {
+
+    // ETTTのCoreライブラリを参照
+    compile project('com.zomu.t:epion-t3-core:0.0.1')
+    
+}
+
+// omitted
+
+```
+
+`ETTT`をカスタマイズするために必要な定義は、`ETTT`のCoreライブラリを参照するのみです。
+
+
+## Flow
+Flowはシナリオの動作を制御するためのものです。  
+このFlowをカスタマイズすることによってコマンドの実行順序を動的に制御したり、特定の入力から得た情報で繰り返し処理を行ったりすることができます。
+
+### Flowのインタフェース
+
+
+## Command
+Commandはシナリオにおける実際の動作を行うものです。  
+このCommandをカスタマイズすることによってETTTで任意の動作を行えるようにできます。  
+
+### CommandにおけるModelとRunner
+Commandのカスタマイズを行うためには、ModelクラスとRunnerクラスを1対1の関係性で作成する必要があります。
+ModelはYAMLの定義を読み込むためのJavaBeansです。RunnerはYAMLから読み込んだ情報を元に実際に処理を行うためのクラスです。
+それぞれのクラスに対して `ETTT` にて決められたインタフェースの実装やスーパークラスの継承が必要になります。
+
+### Modelの作成
+CommandのModelクラスを実装するためには、`com.zomu.t.epion.tropic.test.tool.core.model.scenario.Command`クラスを継承する必要があります。
+また、Commandであることを示すための`com.zomu.t.epion.tropic.test.tool.core.annotation.Command`アノテーションを付与する必要があります。
+以下に実装例を示します。
+
+
+```java
+// omitted
+
+import com.zomu.t.epion.tropic.test.tool.basic.command.runner.StringConcatRunner;
+import com.zomu.t.epion.tropic.test.tool.core.model.scenario.Command;
+import org.apache.bval.constraints.NotEmpty;
+import java.util.List;
+
+@com.zomu.t.epion.tropic.test.tool.core.annotation.Command(id = "StringConcat", runner = StringConcatRunner.class)
+public class StringConcat extends Command {
+
+  @NotEmpty
+  private List<String> referenceVariables; /* (1) */
+
+// omitted Getter And Setter Methods
+
+}
+```
+
+
+
+
+### Runnerの作成
+
+
 
 ## 独自コマンドの作成方法
 
