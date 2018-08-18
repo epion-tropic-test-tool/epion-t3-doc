@@ -236,23 +236,29 @@ Commandはシナリオにおける実際の動作を行うものです。
 
 ### CommandにおけるModelとRunner
 Commandのカスタマイズを行うためには、ModelクラスとRunnerクラスを1対1の関係性で作成する必要があります。
-ModelはYAMLの定義を読み込むためのJavaBeansです。RunnerはYAMLから読み込んだ情報を元に実際に処理を行うためのクラスです。
+ModelクラスはYAMLの定義を読み込むためのJavaBeansです。RunnerはYAMLから読み込んだ情報を元に実際に処理を行うためのクラスです。
 それぞれのクラスに対して `ETTT` にて決められたインタフェースの実装やスーパークラスの継承が必要になります。
 
 ### Modelの作成
-CommandのModelクラスを実装するためには、`com.zomu.t.epion.tropic.test.tool.core.model.scenario.Command`クラスを継承する必要があります。
-また、Commandであることを示すための`com.zomu.t.epion.tropic.test.tool.core.annotation.Command`アノテーションを付与する必要があります。
-先ずはModelクラスの作成の前にスーパークラスである`com.zomu.t.epion.tropic.test.tool.core.model.scenario.Command`クラスの仕様を理解する必要があります。
+CommandのModelクラスを実装するためには、`Command`クラスを継承する必要があります。
+また、Commandであることを示すための`CommandDefinition`アノテーションを付与する必要があります。
+それぞれ、FQCNは以下となります。
+~~~
+com.zomu.t.epion.tropic.test.tool.core.model.scenario.Command
+com.zomu.t.epion.tropic.test.tool.core.annotation.CommandDefinition
+~~~
+
+
+先ずはModelクラスの作成の前にスーパークラスである`Command`クラスの仕様を理解する必要があります。
 
 |Field|Type|Required|Description|
-|:---|:---|:---|:---|
-|id|String|Yes||
-|summary|String|No||
-|description|String|No||
-|command|String|Yes||
-|target|String|No||
-|value|String|No||
-
+|:---|:---:|:---:|:---|
+|id|String|Yes|Commandを定義する際に割り振るID。IDなので一意性を持ってユーザが設定するものです。|
+|summary|String|No|Commandの概要。|
+|description|String|No|Commandの説明。概要より詳細に記載されることを想定しています。|
+|command|String|Yes|Commandの指定。ユーザが利用時に`@CommandDefinition`のid属性で定義してある値を指定します。|
+|target|String|No|Commandの対象を指定する想定で作成したフィールドです。デフォルト状態で存在するフィールドで自由に利用できます。|
+|value|String|No|Commandで利用する叩いを指定する想定で作成したフィールドです。デフォルト状態で存在するフィールドで自由に利用できます。|
 
 次にカスタマイズする祭のModelクラスの実装例を示します。
 
@@ -266,8 +272,8 @@ import org.apache.bval.constraints.NotEmpty;
 import java.util.List;
 
 @CommandDefinition(
-        id = "StringConcat", /* (1) */
-        runner = StringConcatRunner.class) /* (2) */
+  id = "StringConcat", /* (1) */
+  runner = StringConcatRunner.class) /* (2) */
 public class StringConcat extends Command {
 
   @NotEmpty
@@ -280,13 +286,13 @@ public class StringConcat extends Command {
 
 このModelクラスは文字列結合を行うための`StringConcat`コマンドの実際の実装コードになります。
 それぞれの実装ポイントについて以下で説明します。
-実際に`ETTT`ではボイラープレートコードの排除のため[`Lombok`](https://projectlombok.org/)を利用しています。
+実際に`ETTT`ではボイラープレートコードの排除のため[Lombok](https://projectlombok.org/)を利用しています。
 
 |#|Description|
 |:---|:---|
 |1|idにはCommandの名前を設定します。このidは重複すると`ETTT`が意図せぬ挙動を行う場合がありますので命名する際には一意性に気をつけてください。|
 |2|runnerにはCommandの実処理を行うRunnerクラスを設定します。`ETTT`では起動時に`@CommandDefinition`アノテーションからModelクラスとRunnerクラスを紐づける時に利用します。|
-|3|カスタマイズしたい処理に必要な情報を得るためのフィールドを定義します。BeanVaridationを行うことができます。`ETTT`では軽量な[`Apache BVal`](http://bval.apache.org/)を利用しています。|
+|3|カスタマイズしたい処理に必要な情報を得るためのフィールドを定義します。BeanVaridationを行うことができます。`ETTT`では軽量な[Apache BVal](http://bval.apache.org/)を利用しています。|
 
 このModelクラスに対するYAMLの定義例は以下のようになります。
 
@@ -304,7 +310,30 @@ commands:
 
 
 ### Runnerの作成
+CommandのRunnerクラスを実装するためには、`CommandRunner`インタフェースを実装する必要があります。
+FQCNは以下をとなります。
+~~~
+com.zomu.t.epion.tropic.test.tool.core.command.runner.CommandRunner
+~~~
 
+`CommandRunner`インタフェースでは以下のメソッドを必須で実装する必要があります。
+
+##### execute
+Commandの処理を実行するメイン処理メソッドです。
+このメソッド内でCommandが実現したい内容を実装する必要があります。
+###### Args
+|Name|LogicalName|Type|Description|
+|:---|:---|:---|:---|
+|command|Command定義クラス|`COMMAND`(総称型指定)||
+|globalScopeVariables|全体スコープ変数Map|Map||
+|scenarioScopeVariables|シナリオスコープ変数Map|Map||
+|flowScopeVariables|Flowスコープ変数Map|Map||
+|evidences|エビデンスMap|Map||
+|logger|ロガー|`Logger`(SLF4J)||
+###### Result
+void
+###### Throws
+`java.lang.Exception`
 
 
 ## 独自コマンドの作成方法
