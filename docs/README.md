@@ -162,6 +162,7 @@ root
 
 ```
 
+---
 
 # How To Use
 
@@ -198,6 +199,8 @@ root
  |                 |-- *.log
  |                 `-- etc...
 ```
+
+---
 
 # How To Customize
 
