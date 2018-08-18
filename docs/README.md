@@ -1,9 +1,9 @@
 ![ETTT](media/logo-xsmall.svg)
 
 # What Is ETTT?
-Epion Tropic Test Tool (略称 : ETTT) はテストの効率化を目的として、できるだけ扱いやすくしたテストツールです。  
+Epion Tropic Test Tool (略称 : `ETTT`) はテストの効率化を目的として、できるだけ扱いやすくしたテストツールです。  
 簡単に言うとテストを行いたい内容をシナリオと呼ばれる独自仕様のYAMLに記載し、ツールに与えることでテストを走行させるというものです。  
-ETTTはキーワード駆動テストを行うための手段として用いれるようにすることを目標としています。  
+`ETTT`はキーワード駆動テストを行うための手段として用いれるようにすることを目標としています。  
 最終的には「ISO/IEC/IEEE 29119-5:2016」に準拠したソフトウェアを作成したいと考えています。  
 
 
@@ -31,7 +31,7 @@ ETTTはキーワード駆動テストを行うための手段として用いれ�
 
 ## Glossary
 
-以下はETTT上での用語集になります。
+以下は`ETTT`上での用語集になります。
 
 |名称|読み|説明|
 |---|---|---|
@@ -46,11 +46,11 @@ ETTTはキーワード駆動テストを行うための手段として用いれ�
 
 # Specification
 
-ETTTの独自仕様のYAMLを記載する必要があります。  
+`ETTT`の独自仕様のYAMLを記載する必要があります。  
 本章では、その独自仕様について説明を行います。
 
 ## Basic Structure
-ETTTの基本構文は以下の通りになります。   
+`ETTT`の基本構文は以下の通りになります。   
 全てを１つのYAMLに表現することも可能ですが、後述するディレクトリ構成の説明にある通り、用途毎に分割して管理することを推奨しています。  
 
 ```yaml
@@ -105,7 +105,7 @@ info :
 
 
 ## Basic Directory Structure
-ETTTは様々な１つのYAMLで全てを表すこともできますが、  
+`ETTT`は様々な１つのYAMLで全てを表すこともできますが、  
 シナリオのメンテナンス性や複数人で作成する場合の運用を考慮する場合、  
 細かく用途によってファイルを分割・配置することを推奨します。  
 また、これらのシナリオはGitやSubversionによるバージョン管理を行うことが重要です。
@@ -169,7 +169,6 @@ root
 エンジンの構成は以下の通りです。
 
 
-
 ### 実行結果
 
 ```
@@ -194,8 +193,8 @@ root
 
 |ソフトウェア|内容|
 |---|---|
-|Java|ETTTのエンジンはJavaで作成されています。Javaの1.8以上がインストールされており、パスが通っていることを確認してください。|
-|Gradle|ETTTのビルドに利用します。バージョン4以降を推奨しています。|
+|Java|`ETTT`のエンジンはJavaで作成されています。Javaの1.8以上がインストールされており、パスが通っていることを確認してください。|
+|Gradle|`ETTT`のビルドに利用します。バージョン4以降を推奨しています。|
 
 
 ## Project
@@ -318,16 +317,51 @@ MessageManager.getInstance().getMessageWithCode("com.zomu.t.epion.t3.core.err.00
 ```
 
 ## Error Process
+カスタマイズ実装を行う際のエラー処理について説明します。
+`ETTT`では細かく用途分類された例外クラスをいくつか保有していますが、カスタマイズ実装にて利用するのは`SystemException`のみです。
+FQCNは以下になります。
 
+~~~
+com.zomu.t.epion.tropic.test.tool.core.exception.SystemException
+~~~
 
+`SystemException`は`java.lang.RuntimeException`を継承しています。
+コンストラクタは、メッセージと例外(`Throwable`)を受け取るものを用意しています。
+バインド変数の有無などの状況に応じて使い分けが可能ないくつかのオーバーロードされたコンストラクタを保有します。(コンストラクタもオーバーロードっていうのかな・・・)
 
+___実装例___
+
+`t`は`Throwable`です。
+
+```java
+
+throw new SystemException(CoreMessages.BASIC_ERR_9001);
+
+throw new SystemException(t, CoreMessages.BASIC_ERR_9001);
+
+throw new SystemException("com.zomu.t.epion.t3.core.err.0001");
+
+throw new SystemException(t, "com.zomu.t.epion.t3.core.err.0001");
+
+throw new SystemException(CoreMessages.BASIC_ERR_9002, "1.0.0");
+
+throw new SystemException(t, CoreMessages.BASIC_ERR_9002, "1.0.0");
+
+throw new SystemException("com.zomu.t.epion.t3.core.err.0002", "1.0.0");
+
+throw new SystemException(t, "com.zomu.t.epion.t3.core.err.0002", "1.0.0");
+
+```
+
+`SystemException`の内部では、`MessageManager`を利用してメッセージの解決を行ないます。
+そのため、`Messages`インタフェースを実装したEnumについても引数で受け付けるようにしています。
 
 
 ## Flow
 Flowはシナリオの動作を制御するためのものです。  
 このFlowをカスタマイズすることによってコマンドの実行順序を動的に制御したり、特定の入力から得た情報で繰り返し処理を行ったりすることができます。
 
-### Flowのインタフェース
+### FlowにおけるModelとRunner
 
 
 ## Command
