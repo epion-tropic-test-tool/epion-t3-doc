@@ -291,27 +291,27 @@ ___実装例___
 
 ```java
 
-Strin message_1 = MessageManager.getInstance().getMessage(CoreMessages.CORE_ERR_0001);
+MessageManager.getInstance().getMessage(CoreMessages.CORE_ERR_0001);
 
 // 予期せぬエラーが発生しました.システムの故障の可能性があります.
 
-Strin message_2 = MessageManager.getInstance().getMessage("com.zomu.t.epion.t3.core.err.0001");
+MessageManager.getInstance().getMessage("com.zomu.t.epion.t3.core.err.0001");
 
 // 予期せぬエラーが発生しました.システムの故障の可能性があります.
 
-Strin message_3 = MessageManager.getInstance().getMessage(CoreMessages.CORE_ERR_0002, "1.0.0");
+MessageManager.getInstance().getMessage(CoreMessages.CORE_ERR_0002, "1.0.0");
 
 // 指定されたバージョンは存在しません.バージョン:1.0.0
 
-Strin message_4 = MessageManager.getInstance().getMessage("com.zomu.t.epion.t3.core.err.0002", "1.0.0");
+MessageManager.getInstance().getMessage("com.zomu.t.epion.t3.core.err.0002", "1.0.0");
 
 // 指定されたバージョンは存在しません.バージョン:1.0.0
 
-Strin message_5 = MessageManager.getInstance().getMessageWithCode(CoreMessages.CORE_ERR_0001);
+MessageManager.getInstance().getMessageWithCode(CoreMessages.CORE_ERR_0001);
 
 // [com.zomu.t.epion.t3.core.err.0001] 予期せぬエラーが発生しました.システムの故障の可能性があります.
 
-Strin message_6 = MessageManager.getInstance().getMessage("com.zomu.t.epion.t3.core.err.0001");
+MessageManager.getInstance().getMessageWithCode("com.zomu.t.epion.t3.core.err.0001");
 
 // [com.zomu.t.epion.t3.core.err.0001] 予期せぬエラーが発生しました.システムの故障の可能性があります.
 
