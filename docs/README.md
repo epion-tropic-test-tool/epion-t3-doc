@@ -155,7 +155,6 @@ root
  |     |
  |     `-- t3-{ProfileName}.yaml
  |
- |
  `-- customs
        |
        `-- t3-custom.yaml
@@ -482,15 +481,90 @@ void execute(  /* (1) */
 例外ハンドリング処理は、Commandの実行を司るクラスにて行うため特に必要ありません。
 各スコープ変数には、`ETTT`であらかじめ予約的に利用している`Key`が存在します。(一覧にて後述します)
 また、`CommandRunner`インタフェースには、いくつかの便利メソッドが`defaultメソッド`として提供されていますので必要に応じてご利用ください。
+以下では用意している`defaultメソッド`のシグネチャ説明を行います。
 
-**aaaaa**
+___resolveVariables___
+変数の解決を行います。  
+引数の変数の参照名からスコープの判断を行い値を返却します。
 
+```java
+default Object resolveVariables(
+  final Map<String, Object> globalScopeVariables,
+  final Map<String, Object> scenarioScopeVariables,
+  final Map<String, Object> flowScopeVariables,
+  final String referenceVariable)
+```
+
+___getScenarioDirectory___
+現在実行中のシナリオが格納されているディレクトリのパスを文字列で取得します。
+
+```java
+default String getScenarioDirectory(
+  final Map<String, Object> scenarioScopeVariables)
+```
+
+___getScenarioDirectoryPath____
+現在実行中のシナリオが格納されているディレクトリのPathを取得します。
+
+```java
+default Path getScenarioDirectoryPath(
+  final Map<String, Object> scenarioScopeVariables)
+```
 
 
 **実装例**
 
 Modelクラスの説明でも例に出した`StringConcat`コマンドに対する`CommandRunner`の実装を例に出して説明します。
+この説明では、クラスのソースコードを省略することなく全てのコードを掲載します。(JavaDoc等は割愛)
 
 ```java
+package com.zomu.t.epion.tropic.test.tool.basic.command.runner;
+
+import com.zomu.t.epion.tropic.test.tool.basic.command.model.StringConcat;
+import com.zomu.t.epion.tropic.test.tool.core.command.runner.CommandRunner;
+import com.zomu.t.epion.tropic.test.tool.core.context.EvidenceInfo;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+public class StringConcatRunner implements CommandRunner<StringConcat> {  /* (1) */
+
+  @Override
+  public void execute(
+    final StringConcat process,
+    final Map<String, Object> globalScopeVariables,
+    final Map<String, Object> scenarioScopeVariables,
+    final Map<String, Object> flowScopeVariables,
+    final Map<String, EvidenceInfo> evidences,
+    final Logger logger) throws Exception {
+
+    logger.info("start StringConcat");
+
+    List<String> rawValues = new ArrayList<>();
+
+    for (String referenceVariable : process.getReferenceVariables()) {  /* (2) */
+
+      Object variable = resolveVariables(  /* (3) */
+        globalScopeVariables,
+          scenarioScopeVariables,
+          flowScopeVariables,
+          referenceVariable);
+
+      if (variable != null) {
+        rawValues.add(variable.toString());
+      }
+      
+    }
+
+    String joinedValue = StringUtils.join(rawValues.toArray(new String[0]));
+    logger.info("Joined Value : {}", joinedValue);  /* (4) */
+    scenarioScopeVariables.put(process.getTarget(), joinedValue);  /* (5) */
+    logger.info("end StringConcat");
+  }
+
+}
 
 ```
