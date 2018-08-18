@@ -316,30 +316,33 @@ FQCNは以下をとなります。
 com.zomu.t.epion.tropic.test.tool.core.command.runner.CommandRunner
 ~~~
 
-`CommandRunner`インタフェースでは以下のメソッドを必須で実装する必要があります。
-
-##### execute
-Commandの処理を実行するメイン処理メソッドです。
+`CommandRunner`インタフェースではexecuteメソッドを必ず実装する必要があります。
+executeメソッドはCommandの処理を実行するメイン処理メソッドです。
 このメソッド内でCommandが実現したい内容を実装する必要があります。
-###### Args
-|Name|LogicalName|Type|Description|
-|:---|:---|:---|:---|
-|command|Command定義クラス|`COMMAND`(総称型指定)||
-|globalScopeVariables|全体スコープ変数Map|Map||
-|scenarioScopeVariables|シナリオスコープ変数Map|Map||
-|flowScopeVariables|Flowスコープ変数Map|Map||
-|evidences|エビデンスMap|Map||
-|logger|ロガー|`Logger`(SLF4J)||
-###### Result
-void
-###### Throws
-`java.lang.Exception`
 
 
-## 独自コマンドの作成方法
+```java
+void execute(  /* (1) */
+  final COMMAND process,  /* (2) */
+  final Map<String, Object> globalScopeVariables,  /* (3) */
+  final Map<String, Object> scenarioScopeVariables,  /* (4) */
+  final Map<String, Object> flowScopeVariables,  /* (5) */
+  final Map<String, EvidenceInfo> evidences,  /* (6) */
+  final Logger logger) throws Exception;  /* (7) */
+```
 
-独自コマンドを作成するには、コマンド定義（Process）と実行クラス（Runner）を作成する必要があります。 +
-コマンド定義は、YAMLに定義する内容を決めるものです。 +
-実行クラスはコマンド定義でユーザが指定した内容に基づき処理を実行するものです。 +
-ETTTでは、誰でも独自に作成ができるようにインターフェースやユーティリティを提供しています。
+1. 戻り値はありません。
+1. Command定義クラスであり、`COMMAND`(総称型指定)
+1. 全体スコープ変数Mapです。値を取り出したり設定したりする目的で利用します。
+1. シナリオスコープ変数Mapです。値を取り出したり設定したりする目的で利用します。
+1. Flowスコープ変数Mapです。値を取り出したり設定したりする目的で利用します。
+1. エビデンスMapです。エビデンスを取り出したり設定したりする目的で利用します。
+1. コマンド専用のロガーでありSLF4Jの`Logger`を利用している。ログを出力する時にはこの`Logger`を利用すること。
+
+例外ハンドリング処理は、Commandの実行を司るクラスにて行うため特に必要ありません。
+各スコープ変数には、`ETTT`であらかじめ予約的に利用している`Key`が存在します。(一覧にて後述します)
+また、`CommandRunner`インタフェースには、いくつかの便利メソッドがdefaultメソッドとして提供されていますので必要に応じてご利用ください。
+
+
+
 
