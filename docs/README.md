@@ -237,7 +237,7 @@ dependencies {
 制約として、メッセージを定義するファイル名の接尾辞は`_messages.properties`である必要があります。
 クラスパス配下に存在する接尾辞が合致したリソースを`ResourceBundle`で扱えるようにします。
 
-___実装例___
+**実装例**
 
 `ETTT`では以下のようなメッセージの定義をしています。
 ```properties
@@ -259,7 +259,7 @@ FQCNは以下になります。
 com.zomu.t.epion.tropic.test.tool.core.message.Messages
 ~~~
 
-___実装例___
+**実装例**
 
 `ETTT`では以下のようなメッセージのEnum定義をしています。
 
@@ -293,7 +293,7 @@ com.zomu.t.epion.tropic.test.tool.core.message.MessageManager
 `MessageManager`はカスタマイズ実装者が利用するクラスであり、状況に応じて使い分けが可能ないくつかのオーバーロードされたメソッドを保有しています。
 このクラスはシングルトンであるため、インスタンスを取得してから利用してください。
 
-___実装例___
+**実装例**
 
 ```java
 
@@ -336,7 +336,7 @@ com.zomu.t.epion.tropic.test.tool.core.exception.SystemException
 コンストラクタは、メッセージと例外(`Throwable`)を受け取るものを用意しています。
 バインド変数の有無などの状況に応じて使い分けが可能ないくつかのオーバーロードされたコンストラクタを保有します。(コンストラクタもオーバーロードっていうのかな・・・)
 
-___実装例___
+**実装例**
 
 `t`は`Throwable`です。
 
@@ -483,7 +483,8 @@ void execute(  /* (1) */
 また、`CommandRunner`インタフェースには、いくつかの便利メソッドが`defaultメソッド`として提供されていますので必要に応じてご利用ください。
 以下では用意している`defaultメソッド`のシグネチャ説明を行います。
 
-___resolveVariables___
+**resolveVariables**
+
 変数の解決を行います。  
 引数の変数の参照名からスコープの判断を行い値を返却します。
 
@@ -495,7 +496,8 @@ default Object resolveVariables(
   final String referenceVariable)
 ```
 
-___getScenarioDirectory___
+**getScenarioDirectory**
+
 現在実行中のシナリオが格納されているディレクトリのパスを文字列で取得します。
 
 ```java
@@ -503,7 +505,8 @@ default String getScenarioDirectory(
   final Map<String, Object> scenarioScopeVariables)
 ```
 
-___getScenarioDirectoryPath____
+**getScenarioDirectoryPath**
+
 現在実行中のシナリオが格納されているディレクトリのPathを取得します。
 
 ```java
@@ -516,6 +519,7 @@ default Path getScenarioDirectoryPath(
 
 Modelクラスの説明でも例に出した`StringConcat`コマンドに対する`CommandRunner`の実装を例に出して説明します。
 この説明では、クラスのソースコードを省略することなく全てのコードを掲載します。(JavaDoc等は割愛)
+このCommandクラスは、指定された文字列(変数 or 固定値)を結合して１つの文字列としてシナリオスコープの変数に登録するという機能を提供します。
 
 ```java
 package com.zomu.t.epion.tropic.test.tool.basic.command.runner;
@@ -534,7 +538,7 @@ public class StringConcatRunner implements CommandRunner<StringConcat> {  /* (1)
 
   @Override
   public void execute(
-    final StringConcat process,
+    final StringConcat command,
     final Map<String, Object> globalScopeVariables,
     final Map<String, Object> scenarioScopeVariables,
     final Map<String, Object> flowScopeVariables,
@@ -545,13 +549,13 @@ public class StringConcatRunner implements CommandRunner<StringConcat> {  /* (1)
 
     List<String> rawValues = new ArrayList<>();
 
-    for (String referenceVariable : process.getReferenceVariables()) {  /* (2) */
+    for (String referenceVariable : command.getReferenceVariables()) {  /* (2) */
 
       Object variable = resolveVariables(  /* (3) */
         globalScopeVariables,
-          scenarioScopeVariables,
-          flowScopeVariables,
-          referenceVariable);
+        scenarioScopeVariables,
+        flowScopeVariables,
+        referenceVariable);
 
       if (variable != null) {
         rawValues.add(variable.toString());
@@ -561,10 +565,15 @@ public class StringConcatRunner implements CommandRunner<StringConcat> {  /* (1)
 
     String joinedValue = StringUtils.join(rawValues.toArray(new String[0]));
     logger.info("Joined Value : {}", joinedValue);  /* (4) */
-    scenarioScopeVariables.put(process.getTarget(), joinedValue);  /* (5) */
+    scenarioScopeVariables.put(command.getTarget(), joinedValue);  /* (5) */
     logger.info("end StringConcat");
   }
 
 }
-
 ```
+
+1. `CommandRunner`を実装します。総称型には対応するModelクラスを指定するように実装してください。
+1. `StringConcat`のModelクラスで定義しているFieldである`referenceVariables`をループ処理します。
+1. `resolveVariables`メソッドを実行して変数の解決を行います。取得した変数がnullでなければ結合対象としてリストに追加しています。
+1. 与えれた`Logger`に対してログを出力することでレポートにもそのログ内容を表示することができます。
+1. シナリオスコープの変数に結合した文字列を設定します。変数名はModelクラスの`target`で指定された値を利用します。
