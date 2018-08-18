@@ -223,6 +223,36 @@ dependencies {
 `ETTT`をカスタマイズするために必要な定義は、`ETTT`のCoreライブラリを参照するのみです。
 
 
+## Message
+`ETTT`では、例外時およびログ出力時に`ResourceBundle`が利用できます。
+
+### Messageを定義する
+制約として、メッセージを定義するファイル名の接尾辞は`_messages.properties`である必要があります。
+クラスパス配下に存在する接尾辞が合致したリソースを`ResourceBundle`で扱えるようにします。
+
+___実装例___
+
+`ETTT`では以下のようなメッセージの定義をしています。
+```properties
+com.zomu.t.epion.t3.core.err.0001=予期せぬエラーが発生しました.システムの故障の可能性があります.
+com.zomu.t.epion.t3.core.err.0002=指定されたバージョンは存在しません.バージョン:{0}
+com.zomu.t.epion.t3.core.wrn.0001=変数バインドに失敗しました.対象文字列:{0}
+```
+
+### Messageを取得する
+メッセージの取得は、`MessageManager`クラスを利用することで行えます。
+FQCNは以下になります。
+~~~
+com.zomu.t.epion.tropic.test.tool.core.message.MessageManager
+~~~
+
+
+## Error Process
+
+
+
+
+
 ## Flow
 Flowはシナリオの動作を制御するためのものです。  
 このFlowをカスタマイズすることによってコマンドの実行順序を動的に制御したり、特定の入力から得た情報で繰り返し処理を行ったりすることができます。
@@ -288,11 +318,9 @@ public class StringConcat extends Command {
 それぞれの実装ポイントについて以下で説明します。
 実際に`ETTT`ではボイラープレートコードの排除のため[Lombok](https://projectlombok.org/)を利用しています。
 
-|#|Description|
-|:---|:---|
-|1|idにはCommandの名前を設定します。このidは重複すると`ETTT`が意図せぬ挙動を行う場合がありますので命名する際には一意性に気をつけてください。|
-|2|runnerにはCommandの実処理を行うRunnerクラスを設定します。`ETTT`では起動時に`@CommandDefinition`アノテーションからModelクラスとRunnerクラスを紐づける時に利用します。|
-|3|カスタマイズしたい処理に必要な情報を得るためのフィールドを定義します。BeanVaridationを行うことができます。`ETTT`では軽量な[Apache BVal](http://bval.apache.org/)を利用しています。|
+1. idにはCommandの名前を設定します。このidは重複すると`ETTT`が意図せぬ挙動を行う場合がありますので命名する際には一意性に気をつけてください。|
+2. runnerにはCommandの実処理を行うRunnerクラスを設定します。`ETTT`では起動時に`@CommandDefinition`アノテーションからModelクラスとRunnerクラスを紐づける時に利用します。|
+3. カスタマイズしたい処理に必要な情報を得るためのフィールドを定義します。BeanVaridationを行うことができます。`ETTT`では軽量な[Apache BVal](http://bval.apache.org/)を利用しています。|
 
 このModelクラスに対するYAMLの定義例は以下のようになります。
 
@@ -305,7 +333,7 @@ commands:
    target : "mailaddress"
    referenceVariables : ["scenario.username", "@example.ettt.com"]
 ```
-このようにスーパークラスである`com.zomu.t.epion.tropic.test.tool.core.model.scenario.Command`クラスのフィールドも利用することができますので、
+このようにスーパークラスである`Command`クラスのフィールドも利用することができますので、
 どのフィールドをどのような用途で利用するかは自由です。
 
 
@@ -343,6 +371,14 @@ void execute(  /* (1) */
 各スコープ変数には、`ETTT`であらかじめ予約的に利用している`Key`が存在します。(一覧にて後述します)
 また、`CommandRunner`インタフェースには、いくつかの便利メソッドがdefaultメソッドとして提供されていますので必要に応じてご利用ください。
 
+**aaaaa**
 
 
 
+**実装例**
+
+Modelクラスの説明でも例に出した`StringConcat`コマンドに対する`CommandRunner`の実装を例に出して説明します。
+
+```java
+
+```
