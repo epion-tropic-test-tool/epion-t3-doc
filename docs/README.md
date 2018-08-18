@@ -1,7 +1,7 @@
 ![ETTT](media/logo-xsmall.svg)
 
 # What Is ETTT?
-Epion Tropic Test Tool (略称 : `ETTT`) はテストの効率化を目的として、できるだけ扱いやすくした回帰テストツールです。  
+Epion Tropic Test Tool (略称 : `ETTT`) はテストの効率化を目的として、できるだけ扱いやすくした回帰テストツールです。
 `Epion`には「`次世代`」という意味を込めており、`Tropic`は「`回帰線`」という意味を持つことから選択しています。
 簡単に言うとテストを行いたい内容をシナリオと呼ばれる独自仕様のYAMLに記載し、ツールに与えることでテストを走行させるというものです。  
 `ETTT`はキーワード駆動テストを行うための手段として用いれるようにすることを目標としています。  
@@ -124,7 +124,7 @@ info :
 ```
 root
  |
- |-- parts
+ |-- parts　# (1)
  |     |
  |     `-- {Parts-Unique-ID}
  |           |
@@ -138,7 +138,7 @@ root
  |                 |-- excel_data.xlsx
  |                 `-- etc...
  |
- |-- scenarios
+ |-- scenarios　# (1)
  |     |
  |     `-- {Scenario-Unique-ID}
  |           |
@@ -151,11 +151,12 @@ root
  |           `-- assert
  |                 |-- excel_data.xlsx
  |                 `-- etc...
- |-- profiles
+ |
+ |-- profiles　# (1)
  |     |
  |     `-- t3-{ProfileName}.yaml
  |
- `-- customs
+ `-- customs　# (1)
        |
        `-- t3-custom.yaml
 
@@ -163,6 +164,11 @@ root
 
 
 # How To Use
+
+本章では、`ETTT`の使い方を説明します。
+
+
+## Environment
 このツールを利用するにあたり、以下の環境が整っていることを確認してください。
 
 |ソフトウェア|内容|
@@ -170,13 +176,15 @@ root
 |[Java](https://java.com/ja/download/)|Javaの1.8以上がインストールされており、パスが通っていることを確認してください。|
 |[Graphviz](http://www.graphviz.org/)|Graphvizの2.26.3以上がインストールされており、パスが通っていることを確認してください。レポート機能を利用しない場合は、インストールおよびパスの設定は不要になります。|
 
+## Download Module
 
-## ツールの起動
+
+## Run
 
 エンジンの構成は以下の通りです。
 
 
-### 実行結果
+### Result 
 
 ```
 root
@@ -192,14 +200,16 @@ root
 ```
 
 # How To Customize
+
 `ETTT`は具備している機能では足りない場合や、振る舞いを変更したい場合に自分自身でカスタマイズすることができるようになっています。
 `ETTT`をカスタマイズするためには、Javaでの実装を行う必要があります。
 
-## 前提
-`ETTT`をカスタマイズするには以下の環境が整っている必要があります。
+## Develop Environment
+
+`ETTT`をカスタマイズするには以下の開発環境が整っている必要があります。
 
 |ソフトウェア|内容|
-|---|---|
+|:---|:---|
 |Java|`ETTT`のエンジンはJavaで作成されています。Javaの1.8以上がインストールされており、パスが通っていることを確認してください。|
 |Gradle|`ETTT`のビルドに利用します。バージョン4以降を推奨しています。|
 
@@ -212,18 +222,10 @@ root
 ### build.gradleの例
 
 ```groovy
-
-// omitted
-
 dependencies {
-
-    // ETTTのCoreライブラリを参照
-    compile project('com.zomu.t:epion-t3-core:0.0.1')
-    
+  // ETTTのCoreライブラリを参照
+  compile project('com.zomu.t:epion-t3-core:0.0.1')  
 }
-
-// omitted
-
 ```
 
 `ETTT`をカスタマイズするために必要な定義は、`ETTT`のCoreライブラリを参照するのみです。
@@ -369,6 +371,14 @@ Flowはシナリオの動作を制御するためのものです。
 このFlowをカスタマイズすることによってコマンドの実行順序を動的に制御したり、特定の入力から得た情報で繰り返し処理を行ったりすることができます。
 
 ### FlowにおけるModelとRunner
+Flowのカスタマイズを行うためには、ModelクラスとRunnerクラスを1対1の関係性で作成する必要があります。
+ModelクラスはYAMLの定義を読み込むためのJavaBeansです。RunnerはYAMLから読み込んだ情報を元に実際に処理を行うためのクラスです。
+それぞれのクラスに対して `ETTT` にて決められたインタフェースの実装やスーパークラスの継承が必要になります。
+
+### Modelの作成
+
+### Runnerの作成
+
 
 
 ## Command
