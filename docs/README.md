@@ -1,7 +1,8 @@
 ![ETTT](media/logo-xsmall.svg)
 
 # What Is ETTT?
-Epion Tropic Test Tool (略称 : `ETTT`) はテストの効率化を目的として、できるだけ扱いやすくしたテストツールです。  
+Epion Tropic Test Tool (略称 : `ETTT`) はテストの効率化を目的として、できるだけ扱いやすくした回帰テストツールです。  
+`Epion`には「`次世代`」という意味を込めており、`Tropic`は「`回帰線`」という意味を持つことから選択しています。
 簡単に言うとテストを行いたい内容をシナリオと呼ばれる独自仕様のYAMLに記載し、ツールに与えることでテストを走行させるというものです。  
 `ETTT`はキーワード駆動テストを行うための手段として用いれるようにすることを目標としています。  
 最終的には「ISO/IEC/IEEE 29119-5:2016」に準拠したソフトウェアを作成したいと考えています。  
@@ -94,14 +95,21 @@ YAMLのキーが `{Key}` のように記載されているものはユーザが�
 
 
 ### Basic Information
+シナリオの基本情報を記載するものです。
 
 ```yaml
 info :
-   version : Scenario-Version
-   id : Scenario-Unique-ID
-   summary: Optional Execute Scenario Summary.
-   description:  Optional Execute Scenario Full Description.
+   version : 1.0.0  # (1)
+   id : Scenario-Unique-ID  # (2)
+   summary: Optional Execute Scenario Summary.  # (3)
+   description:  Optional Execute Scenario Full Description.  # (4)
 ```
+
+1. シナリオのバージョン管理をするためのバージョンです。(現状用途を見いだせていない)
+1. シナリオのID。IDであるため、一意性を利用するユーザが担保してください。
+1. シナリオの概要です。必須ではありません。
+1. シナリオの説明です。必須ではありません。
+
 
 
 ## Basic Directory Structure
@@ -153,15 +161,12 @@ root
 
 
 # How To Use
-
-## 前提
 このツールを利用するにあたり、以下の環境が整っていることを確認してください。
 
-
 |ソフトウェア|内容|
-|---|---|
-|Java|Javaの1.8以上がインストールされており、パスが通っていることを確認してください。|
-
+|:---|:---|
+|[Java](https://java.com/ja/download/)|Javaの1.8以上がインストールされており、パスが通っていることを確認してください。|
+|[Graphviz](http://www.graphviz.org/)|Graphvizの2.26.3以上がインストールされており、パスが通っていることを確認してください。レポート機能を利用しない場合は、インストールおよびパスの設定は不要になります。|
 
 
 ## ツールの起動
@@ -473,7 +478,7 @@ void execute(  /* (1) */
 
 例外ハンドリング処理は、Commandの実行を司るクラスにて行うため特に必要ありません。
 各スコープ変数には、`ETTT`であらかじめ予約的に利用している`Key`が存在します。(一覧にて後述します)
-また、`CommandRunner`インタフェースには、いくつかの便利メソッドがdefaultメソッドとして提供されていますので必要に応じてご利用ください。
+また、`CommandRunner`インタフェースには、いくつかの便利メソッドが`defaultメソッド`として提供されていますので必要に応じてご利用ください。
 
 **aaaaa**
 
