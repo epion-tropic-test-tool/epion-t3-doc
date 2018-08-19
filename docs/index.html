@@ -64,11 +64,14 @@
         function (hook, vm) {
           hook.beforeEach(function (html) {
             if (/githubusercontent\.com/.test(vm.route.file)) {
+              alert(vm.route.file);
               url = vm.route.file
                 .replace('raw.githubusercontent.com', 'github.com')
                 .replace(/\/master/, '/blob/master')
+              alert(1)
             } else {
               url = 'https://github.com/epion-tropic-test-tool/epion-t3-doc/tree/master/docs/' + vm.route.file
+              alert(2)
             }
             var editHtml = '[:memo: Edit Document](' + url + ')\n'
 
