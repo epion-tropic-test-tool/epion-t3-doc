@@ -32,4 +32,3 @@ Epion Tropic Test Tool (略称 : `ETTT`) はテストの効率化を目的とし
 - RDBMSに対してSQLを発行する
 - 任意のローカルコマンドの実行を行う
 
----

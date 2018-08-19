@@ -1,25 +1,29 @@
 
+* TOP
+
+  * [What Is ETTT?](README.md)
+
 * Concept
 
-  * [Glossary](concept/glossary.md)
+  * [Glossary](pages/concept/glossary.md)
 
 * Specification
 
-  * [Basic Structure](specification/basic_structure.md)
-  * [Basic Directory Structure](specification/basic_directory_structure.md)
+  * [Basic Structure](pages/specification/basic_structure.md)
+  * [Basic Directory Structure](pages/specification/basic_directory_structure.md)
   
 * How To Use
 
-  * [Environment](use/environment.md)
-  * [Run](use/run.md)
-  * [Result](use/result.md)
+  * [Environment](pages/use/environment.md)
+  * [Run](pages/use/run.md)
+  * [Result](pages/use/result.md)
 
 * How To Customize
 
-  * [Environment](customize/environment.md)
-  * [Project](customize/project.md)
-  * [Message](customize/message.md)
-  * [Error Process](customize/errorprocess.md)
-  * [Flow](customize/flow.md)
-  * [Command](customize/command.md)
+  * [Environment](pages/customize/environment.md)
+  * [Project](pages/customize/project.md)
+  * [Message](pages/customize/message.md)
+  * [Error Process](pages/customize/errorprocess.md)
+  * [Flow](pages/customize/flow.md)
+  * [Command](pages/customize/command.md)
 
