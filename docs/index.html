@@ -63,28 +63,15 @@
       plugins: [
         function (hook, vm) {
           hook.beforeEach(function (html) {
-            if (/githubusercontent\.com/.test(vm.route.file)) {
-              alert(vm.route.file);
-              url = vm.route.file
-                .replace('raw.githubusercontent.com', 'github.com')
-                .replace(/\/master/, '/blob/master')
-              alert(1)
-            } else {
-              url = 'https://github.com/epion-tropic-test-tool/epion-t3-doc/tree/master/docs/' + vm.route.file
-              alert(2)
-            }
-            var editHtml = '[:memo: Edit Document](' + url + ')\n'
-
-            return editHtml
-              + html
-              //+ '\n\n----\n\n'
+            return html
+              + '\n\n---\n\n'
               + '<a href="https://ettt.t-zomu.com" target="_blank" style="color: inherit; font-weight: normal; text-decoration: none;">&copy; 2018 ettt.t-zomu.com.</a>'
           })
         }
       ]
     }
   </script>
-<script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+<script src="libs/docsify.js"></script>
 <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
 <script src="//unpkg.com/docsify/lib/plugins/ga.min.js"></script>
 <script src="//unpkg.com/prismjs/components/prism-bash.min.js"></script>
@@ -92,12 +79,14 @@
 <script src="//unpkg.com/prismjs/components/prism-nginx.min.js"></script>
 <script src="//unpkg.com/prismjs/components/prism-java.min.js"></script>
 
+<!--
 <script>
   ((window.gitter = {}).chat = {}).options = {
     room: 'docsifyjs/Lobby'
   };
   </script>
 <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+-->
 </body>
 
 </html>
