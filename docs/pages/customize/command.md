@@ -56,9 +56,9 @@ public class StringConcat extends Command {
 それぞれの実装ポイントについて以下で説明します。
 実際に`ETTT`ではボイラープレートコードの排除のため[Lombok](https://projectlombok.org/)を利用しています。
 
-1. idにはCommandの名前を設定します。このidは重複すると`ETTT`が意図せぬ挙動を行う場合がありますので命名する際には一意性に気をつけてください。|
-2. runnerにはCommandの実処理を行うRunnerクラスを設定します。`ETTT`では起動時に`@CommandDefinition`アノテーションからModelクラスとRunnerクラスを紐づける時に利用します。|
-3. カスタマイズしたい処理に必要な情報を得るためのフィールドを定義します。BeanVaridationを行うことができます。`ETTT`では軽量な[Apache BVal](http://bval.apache.org/)を利用しています。|
+1. idにはCommandの名前を設定します。このidは重複すると`ETTT`が意図せぬ挙動を行う場合がありますので命名する際には一意性に気をつけてください。
+2. runnerにはCommandの実処理を行うRunnerクラスを設定します。`ETTT`では起動時に`@CommandDefinition`アノテーションからModelクラスとRunnerクラスを紐づける時に利用します。
+3. カスタマイズしたい処理に必要な情報を得るためのフィールドを定義します。BeanVaridationを行うことができます。`ETTT`では軽量な[Apache BVal](http://bval.apache.org/)を利用しています。
 
 このModelクラスに対するYAMLの定義例は以下のようになります。
 
@@ -74,6 +74,20 @@ commands:
 このようにスーパークラスである`Command`クラスのフィールドも利用することができますので、
 どのフィールドをどのような用途で利用するかは自由です。
 
+
+### アサーション系コマンドのModelの作成
+アサーションを行うコマンドについては、`@CommandDefinition`アノテーションの属性値を追加で設定する必要があります。
+追加する属性は`assertCommand`であり、`Boolean`にて指定を行います。この属性値はデフォルト値が`false`となりますので、
+アサーション系コマンドにのみ定義する必要があります。実装例を示します。
+
+```java
+@CommandDefinition(
+  id = "StringConcat",
+  assertCommand = true,
+  runner = AssertTrue.class)
+public class AssertTrue extends Command {
+
+```
 
 ## Runnerの作成
 CommandのRunnerクラスを実装するためには、`CommandRunner`インタフェースを実装する必要があります。
@@ -214,3 +228,4 @@ public class StringConcatRunner extends AbstractCommandRunner<StringConcat> {  /
 1. `resolveVariables`メソッドを実行して変数の解決を行います。取得した変数がnullでなければ結合対象としてリストに追加しています。
 1. 与えれた`Logger`に対してログを出力することでレポートにもそのログ内容を表示することができます。
 1. シナリオスコープの変数に結合した文字列を設定します。変数名はModelクラスの`target`で指定された値を利用します。
+
