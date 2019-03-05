@@ -117,19 +117,18 @@ Object resolveVariables(final String referenceVariable)
 現在実行中のシナリオが格納されているディレクトリのパスを文字列で取得します。
 
 ```java
-default String getScenarioDirectory(
-  final Map<String, Object> scenarioScopeVariables)
+String getScenarioDirectory()
 ```
 
 **getScenarioDirectoryPath**
 
 現在実行中のシナリオが格納されているディレクトリのPathを取得します。
+利用用途としては、シナリオが格納されているディレクトリの配下にdata/assertなどのディレクトリからデータを読み込むためなどを想定。
+詳しくは、[基本ディレクトリ構成](../specification/basic_directory_structure.md)を参照。
 
 ```java
-default Path getScenarioDirectoryPath(
-  final Map<String, Object> scenarioScopeVariables)
+Path getScenarioDirectoryPath()
 ```
-
 
 **実装例**
 
