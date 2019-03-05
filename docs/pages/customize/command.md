@@ -77,38 +77,31 @@ commands:
 
 ## Runnerの作成
 CommandのRunnerクラスを実装するためには、`CommandRunner`インタフェースを実装する必要があります。
-FQCNは以下をとなります。
+CommandのRunnerクラスを作成する場合は、Commandの処理に必要な処理を提供している`AbstractCommandRunner`を継承します。
+FQCNはぞれぞれ以下となります。
 ~~~
 com.zomu.t.epion.tropic.test.tool.core.command.runner.CommandRunner
+com.zomu.t.epion.tropic.test.tool.core.command.runner.impl.AbstractCommandRunner
 ~~~
 
-`CommandRunner`インタフェースではexecuteメソッドを必ず実装する必要があります。
+`AbstractCommandRunner`を継承したクラスではexecuteメソッドを必ず実装する必要があります。
 executeメソッドはCommandの処理を実行するメイン処理メソッドです。
-このメソッド内でCommandが実現したい内容を実装する必要があります。
+このメソッド内でCommandが実現したい内容を実装します。
 
 
 ```java
 void execute(  /* (1) */
   final COMMAND process,  /* (2) */
-  final Map<String, Object> globalScopeVariables,  /* (3) */
-  final Map<String, Object> scenarioScopeVariables,  /* (4) */
-  final Map<String, Object> flowScopeVariables,  /* (5) */
-  final Map<String, EvidenceInfo> evidences,  /* (6) */
-  final Logger logger) throws Exception;  /* (7) */
+  final Logger logger) throws Exception;  /* (3) */
 ```
 
 1. 戻り値はありません。
 1. Command定義クラスであり、`COMMAND`(総称型指定)
-1. 全体スコープ変数Mapです。値を取り出したり設定したりする目的で利用します。
-1. シナリオスコープ変数Mapです。値を取り出したり設定したりする目的で利用します。
-1. Flowスコープ変数Mapです。値を取り出したり設定したりする目的で利用します。
-1. エビデンスMapです。エビデンスを取り出したり設定したりする目的で利用します。
 1. コマンド専用のロガーでありSLF4Jの`Logger`を利用している。ログを出力する時にはこの`Logger`を利用すること。
 
 例外ハンドリング処理は、Commandの実行を司るクラスにて行うため特に必要ありません。
-各スコープ変数には、`ETTT`であらかじめ予約的に利用している`Key`が存在します。(一覧にて後述します)
-また、`CommandRunner`インタフェースには、いくつかの便利メソッドが`defaultメソッド`として提供されていますので必要に応じてご利用ください。
-以下では用意している`defaultメソッド`のシグネチャ説明を行います。
+また、`AbstractCommandRunner`クラスには、いくつかの便利メソッドが提供されていますので必要に応じてご利用ください。
+以下では用意しているメソッドのシグネチャ説明を行います。
 
 **resolveVariables**
 
@@ -116,11 +109,7 @@ void execute(  /* (1) */
 引数の変数の参照名からスコープの判断を行い値を返却します。
 
 ```java
-default Object resolveVariables(
-  final Map<String, Object> globalScopeVariables,
-  final Map<String, Object> scenarioScopeVariables,
-  final Map<String, Object> flowScopeVariables,
-  final String referenceVariable)
+Object resolveVariables(final String referenceVariable)
 ```
 
 **getScenarioDirectory**
