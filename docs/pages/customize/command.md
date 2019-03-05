@@ -140,7 +140,7 @@ Modelクラスの説明でも例に出した`StringConcat`コマンドに対す�
 package com.zomu.t.epion.tropic.test.tool.basic.command.runner;
 
 import com.zomu.t.epion.tropic.test.tool.basic.command.model.StringConcat;
-import com.zomu.t.epion.tropic.test.tool.core.command.runner.CommandRunner;
+import com.zomu.t.epion.tropic.test.tool.core.command.runner.impl.AbstractCommandRunner;
 import com.zomu.t.epion.tropic.test.tool.core.context.EvidenceInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -149,18 +149,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class StringConcatRunner implements CommandRunner<StringConcat> {  /* (1) */
+public class StringConcatRunner extends AbstractCommandRunner<StringConcat> {  /* (1) */
 
   @Override
   public void execute(
     final StringConcat command,
-    final Map<String, Object> globalScopeVariables,
-    final Map<String, Object> scenarioScopeVariables,
-    final Map<String, Object> flowScopeVariables,
-    final Map<String, EvidenceInfo> evidences,
     final Logger logger) throws Exception {
-
-    logger.info("start StringConcat");
 
     List<String> rawValues = new ArrayList<>();
 
@@ -181,13 +175,13 @@ public class StringConcatRunner implements CommandRunner<StringConcat> {  /* (1)
     String joinedValue = StringUtils.join(rawValues.toArray(new String[0]));
     logger.info("Joined Value : {}", joinedValue);  /* (4) */
     scenarioScopeVariables.put(command.getTarget(), joinedValue);  /* (5) */
-    logger.info("end StringConcat");
+
   }
 
 }
 ```
 
-1. `CommandRunner`を実装します。総称型には対応するModelクラスを指定するように実装してください。
+1. `AbstractCommandRunner`を継承します。総称型には対応するModelクラスを指定するように実装してください。
 1. `StringConcat`のModelクラスで定義しているFieldである`referenceVariables`をループ処理します。
 1. `resolveVariables`メソッドを実行して変数の解決を行います。取得した変数がnullでなければ結合対象としてリストに追加しています。
 1. 与えれた`Logger`に対してログを出力することでレポートにもそのログ内容を表示することができます。
