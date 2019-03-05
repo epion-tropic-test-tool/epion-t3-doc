@@ -124,7 +124,7 @@ String getScenarioDirectory()
 
 現在実行中のシナリオが格納されているディレクトリのPathを取得します。
 利用用途としては、シナリオが格納されているディレクトリの配下にdata/assertなどのディレクトリからデータを読み込むためなどを想定。
-詳しくは、[基本ディレクトリ構成](../specification/basic_directory_structure.md)を参照。
+詳しくは、[基本ディレクトリ構成](/specification/basic_directory_structure.md)を参照。
 
 ```java
 Path getScenarioDirectoryPath()
