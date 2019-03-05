@@ -124,11 +124,39 @@ String getScenarioDirectory()
 
 現在実行中のシナリオが格納されているディレクトリのPathを取得します。
 利用用途としては、シナリオが格納されているディレクトリの配下にdata/assertなどのディレクトリからデータを読み込むためなどを想定。
-詳しくは、[基本ディレクトリ構成](/specification/basic_directory_structure.md)を参照。
+詳しくは、[基本ディレクトリ構成](/pages/specification/basic_directory_structure.md)を参照。
 
 ```java
 Path getScenarioDirectoryPath()
 ```
+
+**getGlobalScopeVariables**
+
+グローバル変数マップを取得します。
+このメソッドを利用して自分で変数を解決するよりも、`resolveVariables`を利用することをオススメします。
+
+```java
+Map<String, Object> getGlobalScopeVariables()
+```
+
+**getScenarioScopeVariables**
+
+シナリオ変数マップを取得します。
+このメソッドを利用して自分で変数を解決するよりも、`resolveVariables`を利用することをオススメします。
+
+```java
+Map<String, Object> getScenarioScopeVariables()
+```
+
+**getFlowScopeVariables**
+
+Flow変数マップを取得します。
+このメソッドを利用して自分で変数を解決するよりも、`resolveVariables`を利用することをオススメします。
+
+```java
+Map<String, Object> getFlowScopeVariables()
+```
+
 
 **実装例**
 
