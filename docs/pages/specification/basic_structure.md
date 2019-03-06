@@ -4,7 +4,6 @@
 
 ```yaml
 t3 : 1.0
-type : scenario || parts || config
 
 info :
    version : Scenario-Version
