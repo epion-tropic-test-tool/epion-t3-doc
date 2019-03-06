@@ -33,7 +33,7 @@ profiles :
     {Unique-Key} : Fix Value
 
 customs :
-  command :
+  packages :
     {Custom Unique Name} : Custom Package
 ```
 
@@ -72,5 +72,40 @@ flows :
 1. 実行するFlowの種別です。
 
 
+### Commands
+コマンド＝つまり自動化を行いたい動作を定義するものです。
+コマンドはツールの中において最小の動作単位となります。
+
+```yaml
+commands : 
+ - id : Command-Unique-ID # (1）
+   summary : Optional Command Summary. # (2） 
+   description : Optional Command Description. # (3）
+   command : Execute-Command-ID # (4）
+   target : Target # (5）
+   value : Value # (6）
+   # 以降の要素はcommandに指定したコマンド毎に異なる。
+```
 
 
+### Configurations
+
+### Variables
+
+### Profiles
+
+### Customs
+カスタム機能の追加定義を行うものです。
+`ETTT`は`Core`機能とそれ以外のカスタム機能で成り立ちます。
+`Core`機能はツールの振る舞いやYAMLの形の定義などを持っているものです。
+カスタム機能は、実際にユーザーが利用するすべてのコマンド等が含まれます。
+
+```yaml
+customs:
+  packages: # (1)
+    core: "com.zomu.t.epion.tropic.test.tool.core" # (2)
+    basic: "com.zomu.t.epion.tropic.test.tool.basic" # (3)
+    rest: "com.zomu.t.epion.tropic.test.tool.rest" # (3)
+```
+
+1. カスタム機能を利用するには、カスタム機能を読み込むためのパッケージの指定が必要になります。パッケージはカスタム機能が実装している`Java`クラスのパッケージになります。カスタム機能一覧にてパッケージの一覧を用意しているため適宜参照の上設定してください。
