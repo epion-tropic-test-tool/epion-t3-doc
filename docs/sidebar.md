@@ -11,6 +11,7 @@
 
   * [Basic Structure](pages/specification/basic_structure.md)
   * [Basic Directory Structure](pages/specification/basic_directory_structure.md)
+  * [Variables](pages/specification/variables.md)
   
 * How To Use
 

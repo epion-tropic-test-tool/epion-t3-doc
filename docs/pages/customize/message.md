@@ -6,7 +6,7 @@
 制約として、メッセージを定義するファイル名の接尾辞は`_messages.properties`である必要があります。
 クラスパス配下に存在する接尾辞が合致したリソースを`ResourceBundle`で扱えるようにします。
 
-**実装例**
+#### 実装例
 
 `ETTT`では以下のようなメッセージの定義をしています。
 ```properties
@@ -28,7 +28,7 @@ FQCNは以下になります。
 com.zomu.t.epion.tropic.test.tool.core.message.Messages
 ~~~
 
-**実装例**
+#### 実装例
 
 `ETTT`では以下のようなメッセージのEnum定義をしています。
 
@@ -62,7 +62,7 @@ com.zomu.t.epion.tropic.test.tool.core.message.MessageManager
 `MessageManager`はカスタマイズ実装者が利用するクラスであり、状況に応じて使い分けが可能ないくつかのオーバーロードされたメソッドを保有しています。
 このクラスはシングルトンであるため、インスタンスを取得してから利用してください。
 
-**実装例**
+#### 実装例
 
 ```java
 
