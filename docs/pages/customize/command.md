@@ -56,9 +56,9 @@ public class StringConcat extends Command {
 それぞれの実装ポイントについて以下で説明します。
 実際に`ETTT`ではボイラープレートコードの排除のため[Lombok](https://projectlombok.org/)を利用しています。
 
-1. idにはCommandの名前を設定します。このidは重複すると`ETTT`が意図せぬ挙動を行う場合がありますので命名する際には一意性に気をつけてください。|
-2. runnerにはCommandの実処理を行うRunnerクラスを設定します。`ETTT`では起動時に`@CommandDefinition`アノテーションからModelクラスとRunnerクラスを紐づける時に利用します。|
-3. カスタマイズしたい処理に必要な情報を得るためのフィールドを定義します。BeanVaridationを行うことができます。`ETTT`では軽量な[Apache BVal](http://bval.apache.org/)を利用しています。|
+1. idにはCommandの名前を設定します。このidは重複すると`ETTT`が意図せぬ挙動を行う場合がありますので命名する際には一意性に気をつけてください。
+2. runnerにはCommandの実処理を行うRunnerクラスを設定します。`ETTT`では起動時に`@CommandDefinition`アノテーションからModelクラスとRunnerクラスを紐づける時に利用します。
+3. カスタマイズしたい処理に必要な情報を得るためのフィールドを定義します。BeanVaridationを行うことができます。`ETTT`では軽量な[Apache BVal](http://bval.apache.org/)を利用しています。
 
 このModelクラスに対するYAMLの定義例は以下のようになります。
 
@@ -75,40 +75,47 @@ commands:
 どのフィールドをどのような用途で利用するかは自由です。
 
 
+### アサーション系コマンドのModelの作成
+アサーションを行うコマンドについては、`@CommandDefinition`アノテーションの属性値を追加で設定する必要があります。
+追加する属性は`assertCommand`であり、`Boolean`にて指定を行います。この属性値はデフォルト値が`false`となりますので、
+アサーション系コマンドにのみ定義する必要があります。実装例を示します。
+
+```java
+@CommandDefinition(
+  id = "StringConcat",
+  assertCommand = true,
+  runner = AssertTrue.class)
+public class AssertTrue extends Command {
+
+```
+
 ## Runnerの作成
 CommandのRunnerクラスを実装するためには、`CommandRunner`インタフェースを実装する必要があります。
-FQCNは以下をとなります。
+CommandのRunnerクラスを作成する場合は、Commandの処理に必要な処理を提供している`AbstractCommandRunner`を継承します。
+FQCNはぞれぞれ以下となります。
 ~~~
 com.zomu.t.epion.tropic.test.tool.core.command.runner.CommandRunner
+com.zomu.t.epion.tropic.test.tool.core.command.runner.impl.AbstractCommandRunner
 ~~~
 
-`CommandRunner`インタフェースではexecuteメソッドを必ず実装する必要があります。
+`AbstractCommandRunner`を継承したクラスではexecuteメソッドを必ず実装する必要があります。
 executeメソッドはCommandの処理を実行するメイン処理メソッドです。
-このメソッド内でCommandが実現したい内容を実装する必要があります。
+このメソッド内でCommandが実現したい内容を実装します。
 
 
 ```java
 void execute(  /* (1) */
   final COMMAND process,  /* (2) */
-  final Map<String, Object> globalScopeVariables,  /* (3) */
-  final Map<String, Object> scenarioScopeVariables,  /* (4) */
-  final Map<String, Object> flowScopeVariables,  /* (5) */
-  final Map<String, EvidenceInfo> evidences,  /* (6) */
-  final Logger logger) throws Exception;  /* (7) */
+  final Logger logger) throws Exception;  /* (3) */
 ```
 
 1. 戻り値はありません。
 1. Command定義クラスであり、`COMMAND`(総称型指定)
-1. 全体スコープ変数Mapです。値を取り出したり設定したりする目的で利用します。
-1. シナリオスコープ変数Mapです。値を取り出したり設定したりする目的で利用します。
-1. Flowスコープ変数Mapです。値を取り出したり設定したりする目的で利用します。
-1. エビデンスMapです。エビデンスを取り出したり設定したりする目的で利用します。
 1. コマンド専用のロガーでありSLF4Jの`Logger`を利用している。ログを出力する時にはこの`Logger`を利用すること。
 
 例外ハンドリング処理は、Commandの実行を司るクラスにて行うため特に必要ありません。
-各スコープ変数には、`ETTT`であらかじめ予約的に利用している`Key`が存在します。(一覧にて後述します)
-また、`CommandRunner`インタフェースには、いくつかの便利メソッドが`defaultメソッド`として提供されていますので必要に応じてご利用ください。
-以下では用意している`defaultメソッド`のシグネチャ説明を行います。
+また、`AbstractCommandRunner`クラスには、いくつかの便利メソッドが提供されていますので必要に応じてご利用ください。
+以下では用意しているメソッドのシグネチャ説明を行います。
 
 **resolveVariables**
 
@@ -116,11 +123,7 @@ void execute(  /* (1) */
 引数の変数の参照名からスコープの判断を行い値を返却します。
 
 ```java
-default Object resolveVariables(
-  final Map<String, Object> globalScopeVariables,
-  final Map<String, Object> scenarioScopeVariables,
-  final Map<String, Object> flowScopeVariables,
-  final String referenceVariable)
+Object resolveVariables(final String referenceVariable)
 ```
 
 **getScenarioDirectory**
@@ -128,17 +131,44 @@ default Object resolveVariables(
 現在実行中のシナリオが格納されているディレクトリのパスを文字列で取得します。
 
 ```java
-default String getScenarioDirectory(
-  final Map<String, Object> scenarioScopeVariables)
+String getScenarioDirectory()
 ```
 
 **getScenarioDirectoryPath**
 
 現在実行中のシナリオが格納されているディレクトリのPathを取得します。
+利用用途としては、シナリオが格納されているディレクトリの配下にdata/assertなどのディレクトリからデータを読み込むためなどを想定。
+詳しくは、[基本ディレクトリ構成](/pages/specification/basic_directory_structure.md)を参照。
 
 ```java
-default Path getScenarioDirectoryPath(
-  final Map<String, Object> scenarioScopeVariables)
+Path getScenarioDirectoryPath()
+```
+
+**getGlobalScopeVariables**
+
+グローバル変数マップを取得します。
+このメソッドを利用して自分で変数を解決するよりも、`resolveVariables`を利用することをオススメします。
+
+```java
+Map<String, Object> getGlobalScopeVariables()
+```
+
+**getScenarioScopeVariables**
+
+シナリオ変数マップを取得します。
+このメソッドを利用して自分で変数を解決するよりも、`resolveVariables`を利用することをオススメします。
+
+```java
+Map<String, Object> getScenarioScopeVariables()
+```
+
+**getFlowScopeVariables**
+
+Flow変数マップを取得します。
+このメソッドを利用して自分で変数を解決するよりも、`resolveVariables`を利用することをオススメします。
+
+```java
+Map<String, Object> getFlowScopeVariables()
 ```
 
 
@@ -152,7 +182,7 @@ Modelクラスの説明でも例に出した`StringConcat`コマンドに対す�
 package com.zomu.t.epion.tropic.test.tool.basic.command.runner;
 
 import com.zomu.t.epion.tropic.test.tool.basic.command.model.StringConcat;
-import com.zomu.t.epion.tropic.test.tool.core.command.runner.CommandRunner;
+import com.zomu.t.epion.tropic.test.tool.core.command.runner.impl.AbstractCommandRunner;
 import com.zomu.t.epion.tropic.test.tool.core.context.EvidenceInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -161,18 +191,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class StringConcatRunner implements CommandRunner<StringConcat> {  /* (1) */
+public class StringConcatRunner extends AbstractCommandRunner<StringConcat> {  /* (1) */
 
   @Override
   public void execute(
     final StringConcat command,
-    final Map<String, Object> globalScopeVariables,
-    final Map<String, Object> scenarioScopeVariables,
-    final Map<String, Object> flowScopeVariables,
-    final Map<String, EvidenceInfo> evidences,
     final Logger logger) throws Exception {
-
-    logger.info("start StringConcat");
 
     List<String> rawValues = new ArrayList<>();
 
@@ -193,14 +217,15 @@ public class StringConcatRunner implements CommandRunner<StringConcat> {  /* (1)
     String joinedValue = StringUtils.join(rawValues.toArray(new String[0]));
     logger.info("Joined Value : {}", joinedValue);  /* (4) */
     scenarioScopeVariables.put(command.getTarget(), joinedValue);  /* (5) */
-    logger.info("end StringConcat");
+
   }
 
 }
 ```
 
-1. `CommandRunner`を実装します。総称型には対応するModelクラスを指定するように実装してください。
+1. `AbstractCommandRunner`を継承します。総称型には対応するModelクラスを指定するように実装してください。
 1. `StringConcat`のModelクラスで定義しているFieldである`referenceVariables`をループ処理します。
 1. `resolveVariables`メソッドを実行して変数の解決を行います。取得した変数がnullでなければ結合対象としてリストに追加しています。
 1. 与えれた`Logger`に対してログを出力することでレポートにもそのログ内容を表示することができます。
 1. シナリオスコープの変数に結合した文字列を設定します。変数名はModelクラスの`target`で指定された値を利用します。
+
