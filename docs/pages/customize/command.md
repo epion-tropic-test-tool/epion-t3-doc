@@ -117,7 +117,7 @@ void execute(  /* (1) */
 また、`AbstractCommandRunner`クラスには、いくつかの便利メソッドが提供されていますので必要に応じてご利用ください。
 以下では用意しているメソッドのシグネチャ説明を行います。
 
-**resolveVariables**
+#### resolveVariables
 
 変数の解決を行います。  
 引数の変数の参照名からスコープの判断を行い値を返却します。
@@ -126,7 +126,7 @@ void execute(  /* (1) */
 Object resolveVariables(final String referenceVariable)
 ```
 
-**getScenarioDirectory**
+#### getScenarioDirectory
 
 現在実行中のシナリオが格納されているディレクトリのパスを文字列で取得します。
 
@@ -134,7 +134,7 @@ Object resolveVariables(final String referenceVariable)
 String getScenarioDirectory()
 ```
 
-**getScenarioDirectoryPath**
+#### getScenarioDirectoryPath
 
 現在実行中のシナリオが格納されているディレクトリのPathを取得します。
 利用用途としては、シナリオが格納されているディレクトリの配下にdata/assertなどのディレクトリからデータを読み込むためなどを想定。
@@ -144,7 +144,7 @@ String getScenarioDirectory()
 Path getScenarioDirectoryPath()
 ```
 
-**getGlobalScopeVariables**
+#### getGlobalScopeVariables
 
 グローバル変数マップを取得します。
 このメソッドを利用して自分で変数を解決するよりも、`resolveVariables`を利用することをオススメします。
@@ -153,7 +153,7 @@ Path getScenarioDirectoryPath()
 Map<String, Object> getGlobalScopeVariables()
 ```
 
-**getScenarioScopeVariables**
+#### getScenarioScopeVariables
 
 シナリオ変数マップを取得します。
 このメソッドを利用して自分で変数を解決するよりも、`resolveVariables`を利用することをオススメします。
@@ -162,7 +162,7 @@ Map<String, Object> getGlobalScopeVariables()
 Map<String, Object> getScenarioScopeVariables()
 ```
 
-**getFlowScopeVariables**
+#### getFlowScopeVariables
 
 Flow変数マップを取得します。
 このメソッドを利用して自分で変数を解決するよりも、`resolveVariables`を利用することをオススメします。
@@ -172,7 +172,7 @@ Map<String, Object> getFlowScopeVariables()
 ```
 
 
-**実装例**
+#### 実装例
 
 Modelクラスの説明でも例に出した`StringConcat`コマンドに対する`CommandRunner`の実装を例に出して説明します。
 この説明では、クラスのソースコードを省略することなく全てのコードを掲載します。(JavaDoc等は割愛)

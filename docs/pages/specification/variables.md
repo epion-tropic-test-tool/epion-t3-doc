@@ -1,8 +1,18 @@
 # Variables
 `ETTT`には変数という概念があります。
-この変数について説明を行います。
+概要レベルで[BasicStructure](/pages/specification/basic_structure)でも触れていますが、
+この章では詳細に説明を行います。
+
+### Variable Kind
+
+|変数の分類|説明|
+|:---|:---|
+|[Java](https://java.com/ja/download/)|Javaの1.8以上がインストールされており、パスが通っていることを確認してください。|
+|[Graphviz](http://www.graphviz.org/)|Graphvizの2.26.3以上がインストールされており、パスが通っていることを確認してください。レポート機能を利用しない場合は、インストールおよびパスの設定は不要になります。|
 
 
-## 変数の種類
+### How To Use
 
-## 変数の利用方法
+#### 取得
+
+#### ストア
