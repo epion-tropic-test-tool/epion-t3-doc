@@ -2,7 +2,7 @@
 
 基本的な動作を行うコマンドを提供します。
 
-### SetVariable
+### 「 SetVariable 」
 
 #### Functions
 
@@ -27,4 +27,4 @@ commands :
 
 
 
-### ConsoleInput
+### 「 ConsoleInput 」
