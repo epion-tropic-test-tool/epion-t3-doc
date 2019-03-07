@@ -14,6 +14,7 @@
 ```yaml
 commands : 
   - id :  # (1)
+    command : SetVariable
     summary : コマンドの概要（任意）
     description : コマンドの詳細（任意）
     target : 変数名を指定 # (2)
