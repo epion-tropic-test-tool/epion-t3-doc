@@ -115,4 +115,4 @@ customs:
 
 シナリオ内の、Flow、Command、Configuration、Profile、Variableの関係性を図に表します。
 
-![](./images/scenario-image.png)
+![structure-image](pages/specification/images/scenario-image.png)
