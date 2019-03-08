@@ -88,7 +88,6 @@ commands :
    # 以降の要素はcommandに指定したコマンド毎に異なる。
 ```
 
-
 ### Configurations
 
 ### Variables
@@ -111,8 +110,13 @@ customs:
 
 1. カスタム機能を利用するには、カスタム機能を読み込むためのパッケージの指定が必要になります。パッケージはカスタム機能が実装している`Java`クラスのパッケージになります。カスタム機能一覧にてパッケージの一覧を用意しているため適宜参照の上設定してください。
 
-### Image
+### Structure Image
 
-シナリオ内の、Flow、Command、Configuration、Profile、Variableの関係性を図に表します。
+シナリオ内の、Flow、Command、Configuration、Profile、Variableの関係性を図に表します。  
 
 ![structure-image](pages/specification/images/scenario-image.png)
+
+この図の通り、シナリオとは、Flow、Command、Configuration、Profileの定義の集合です。
+Variableはシナリオ上に静的に定義が可能ではありますが、基本的な用途として動的な値を管理するものとなるので、
+シナリオ定義とは分離して記載しています。
+また、Flowはあくまで、Command、Configuration、Profile、Variableを組み合わせたユーザ動作の流れを定義しているだけのものということを理解してください。
