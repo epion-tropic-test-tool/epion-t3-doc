@@ -36,7 +36,9 @@ customs :
     {Custom Unique Name} : Custom Package
 ```
 
-YAMLのキーが `{Key}` のように記載されているものはユーザが定義する任意の値となります。
+YAMLのキーが `{Key}` のように記載されているものはユーザが定義する任意の値となります。  
+YAML上の全ての値は、`${scope.name}`といった指定により変数をバインドすることができます。  
+変数については、[Variables](/pages/specification/variables) にて詳細に説明を行います。
 
 
 ### Basic Information
@@ -108,3 +110,9 @@ customs:
 ```
 
 1. カスタム機能を利用するには、カスタム機能を読み込むためのパッケージの指定が必要になります。パッケージはカスタム機能が実装している`Java`クラスのパッケージになります。カスタム機能一覧にてパッケージの一覧を用意しているため適宜参照の上設定してください。
+
+### Image
+
+シナリオ内の、Flow、Command、Configuration、Profile、Variableの関係性を図に表します。
+
+![](./images/scenario-image.png)
