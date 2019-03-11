@@ -13,7 +13,7 @@
 
 ```yaml
 commands : 
-  - id :  # (1)
+  - id : コマンドのID # (1)
     command : SetVariable
     summary : コマンドの概要（任意）
     description : コマンドの詳細（任意）
