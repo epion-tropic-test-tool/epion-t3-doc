@@ -23,8 +23,8 @@
     * [Selenium](pages/specification/command/selenium.md)
   
 * How To Use
-
   * [Environment](pages/use/environment.md)
+  * [Build](pages/use/build.md)
   * [Run](pages/use/run.md)
   * [Result](pages/use/result.md)
 
