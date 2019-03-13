@@ -1,5 +1,7 @@
 # REST Command
 
+REST-API関連のコマンドを提供します。
+
 ### 「ExecuteRestApi」
 
 #### Functions
@@ -61,6 +63,7 @@ com.zomu.t.epion.tropic.test.tool.rest.bean.Response
 scenarios-todos-refer-001
 ```
 
+------
 
 ### 「StoreJsonElement」
 
@@ -87,7 +90,7 @@ commands:
 1. 登録する変数名は、`スコープ`.`名称`で指定します。（例：scenario.hoge）
 1. [JSONPath](https://github.com/json-path/JsonPath)にて指定を行います。
 
-
+------
 
 ### 「AssertHttpStatus」
 
