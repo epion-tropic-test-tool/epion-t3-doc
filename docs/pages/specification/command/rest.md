@@ -17,6 +17,8 @@ commands:
     summary : "コマンドの概要（任意）"
     description : "コマンドの詳細（任意）"
     command: "ExecuteRestApi"
+    connectTimeout: "接続タイムアウトをミリ秒で指定"
+    readTimeout: "読込タイムアウトをミリ秒で指定"
     request:
       method: "(get|post|put|delete)"
       headers:
