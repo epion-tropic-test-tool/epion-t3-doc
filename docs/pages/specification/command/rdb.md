@@ -42,7 +42,6 @@ commands:
 5. インポートするDataSetのファイルのパスを相対パスで指定します。相対パスの基準ディレクトリは対象のシナリオファイルが配置している場所となります。
 対象のシナリオファイルはパーツ定義に配置している場合はパーツのYAMLが配置している場所を指します。
 
-
 #### DataSet
 DataSetとは、RDBのデータ構造を表したもので、DataSetには、CSV、XML、Excelの形式が選べます。  
 本コマンドが利用するDataSetとはすべて[DBUnit](http://dbunit.sourceforge.net/)のDataSetを指します。  

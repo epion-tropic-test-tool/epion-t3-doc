@@ -10,6 +10,13 @@ info :
    id : Scenario-Unique-ID
    summary: Optional Execute Scenario Summary.
    description:  Optional Execute Scenario Full Description.
+   
+scenarios :
+  - id: Target-Scenario-Unique-ID
+    profiles: Execute Profile.
+    mode: Execute Mode.
+    debug: Execute Debug Option.
+    noreport: Execute Non Report Output Option.
 
 flows :
   - id: Flow-Unique-ID
@@ -56,6 +63,22 @@ info :
 1. シナリオのID。IDであるため、一意性を利用するユーザが担保してください。
 1. シナリオの概要です。必須ではありません。
 1. シナリオの説明です。必須ではありません。
+
+### Scenarios
+実行するシナリオを指定するものです。   
+複数のシナリオを一度に実行する際に利用することを想定しています。  
+実行時のオプション指定を一部上書きすることも可能としているため、複数環境にわたる実行にも対応しています。
+
+```yaml
+scenarios :
+  - id: Target-Scenario-Unique-ID # (1)
+    profiles: Execute Profile. # (2)
+    mode: Execute Mode. # (3)
+    debug: Execute Debug Option. # (4)
+    noreport: Execute Non Report Output Option. # (5)
+```
+
+1. 対象とする
 
 ### Flows
 シナリオの動作制御を行うものです。
