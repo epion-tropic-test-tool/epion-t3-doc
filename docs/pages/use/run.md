@@ -19,9 +19,19 @@
 
 
 ## Execute In Jar
-`ETTT`のjarを利用して実行する方法は、通常のJavaのJar指定の実行方法となんら変わらない。
-以下のようにコマンドプロンプトやターミナルから実行することができる。
+`ETTT`のjarを利用して実行する方法は、通常のJavaのJar指定の実行方法となんら変わりません。
+以下のようにコマンドプロンプトやターミナルから実行することができます。
 
 ```bash
-java -jar epion-t3.jar {ptions}
+java -jar epion-t3.jar {options}
+```
+
+### Output Debug Log
+
+`ETTT`の実行時のログのレベルを変更したい場合には、JVMの引数にて定義を行います。  
+起動コマンドに対して以下のように指定を行ってください。  
+例として`DEBUG`レベルで起動するものを示します。
+
+```bash
+java -jar epion-t3.jar -DloggerLevel=DEBUG {options}
 ```
