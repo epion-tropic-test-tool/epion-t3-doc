@@ -12,6 +12,7 @@
   * [Basic Structure](pages/specification/basic_structure.md)
   * [Basic Directory Structure](pages/specification/basic_directory_structure.md)
   * [Variables](pages/specification/variables.md)
+  * [Assert](pages/specification/assert.md)
   
 * Available Commands
   * [Index](pages/specification/command/index.md)
