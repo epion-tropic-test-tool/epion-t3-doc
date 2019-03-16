@@ -2,14 +2,14 @@
 
 SSH関連のコマンドを提供します。
 
-|機能名|概要|アサート|
-|:---|:---|:---|
-|ScpGet|SCPによるファイル取得|-|
-|ScpPut|SCPによるファイル転送|-|
+|機能名|概要|アサート|エビデンス|
+|:---|:---|:---|:---|
+|[ScpGet](#ScpGet)|SCPによるファイル取得|-|Yes|
+|[ScpPut](#ScpPut)|SCPによるファイル転送|-|-|
 
 ------
 
-### 「ScpGet」
+### ScpGet
 
 #### Function
 
@@ -34,7 +34,7 @@ commands:
 
 ------
 
-### 「ScpPut」
+### ScpPut
 
 
 #### Function

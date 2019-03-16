@@ -2,12 +2,12 @@
 
 RDB（Relational DataBase）関連のコマンドを提供します。
 
-|機能名|概要|アサート|
-|:---|:---|:---|
-|[ImportRdbDataRunner](#ImportRdbDataRunner)|RDBに対してデータをインポートする|-|
-|ExportRdbDataRunner|RDBからデータをエクスポートする|-|
-|ExecuteRdbQueryRunner|RDBへ任意のクエリーを発行する|-|
-|[ExecuteRdbScriptRunner](#ExecuteRdbScriptRunner)|RDBへ任意のスクリプト（SQL）の内容を発行する|-|
+|機能名|概要|アサート|エビデンス|
+|:---|:---|:---|:---|
+|[ImportRdbDataRunner](#ImportRdbDataRunner)|RDBに対してデータをインポートする|-|-|
+|ExportRdbDataRunner|RDBからデータをエクスポートする|-|Yes|
+|ExecuteRdbQueryRunner|RDBへ任意のクエリーを発行する|-|-|
+|[ExecuteRdbScriptRunner](#ExecuteRdbScriptRunner)|RDBへ任意のスクリプト（SQL）の内容を発行する|-|-|
 
 ------
 
