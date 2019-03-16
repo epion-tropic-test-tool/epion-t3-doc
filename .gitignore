@@ -50,3 +50,6 @@ nbdist/
 .nb-gradle/
 
 ### Gradle ###
+
+### Mac ###
+.DS_Store
