@@ -2,7 +2,7 @@
 
 REST-API関連のコマンドを提供します。
 
-|機能名|概要|アサート|エビデンス|
+|機能名|概要|Assert|Evidence|
 |:---|:---|:---|:---|
 |[ExecuteRestApi](#ExecuteRestApi)|REST-APIを実行します。|-|Yes|
 |[StoreJsonElement](#StoreJsonElement)|REST-APIの実行結果のBodyから要素を取得して変数に格納します|-|-|
