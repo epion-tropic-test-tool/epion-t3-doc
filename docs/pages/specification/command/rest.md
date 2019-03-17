@@ -4,16 +4,19 @@ REST-API関連のコマンドを提供します。
 
 |機能名|概要|アサート|エビデンス|
 |:---|:---|:---|:---|
-|-|-|-|-|
+|[ExecuteRestApi](#ExecuteRestApi)|REST-APIを実行します。|-|Yes|
+|[StoreJsonElement](#StoreJsonElement)|REST-APIの実行結果のBodyから要素を取得して変数に格納します|-|-|
+|[AssertHttpStatus](#AssertHttpStatus)|REST-APIの実行結果のHTTPステータスコードをアサートします。|Yes|-|
+|[AssertHttpHeader](#AssertHttpHeader)|REST-APIの実行結果のHTTPヘッダをアサートします。|Yes|-|
 
 ------
 
-### 「ExecuteRestApi」
+### ExecuteRestApi
 
 #### Functions
 
 1. REST-APIを呼び出せる
-1. レスポンスをエビデンスとして保持する
+2. レスポンスをエビデンスとして保持する
 
 #### Structure
 
@@ -73,7 +76,7 @@ scenarios-todos-refer-001
 
 ------
 
-### 「StoreJsonElement」
+### StoreJsonElement
 
 レスポンスのボディを解析して値を抽出し、Variableへ登録するための機能です。  
 REST-APIを連続して実行するようなシナリオにおいて、レスポンスの値を引き継ぐ必要がある場合に利用します。
@@ -100,7 +103,7 @@ commands:
 
 ------
 
-### 「AssertHttpStatus」
+### AssertHttpStatus
 
 #### Functions
 
@@ -119,3 +122,27 @@ commands:
 ```
 1. `ExecuteRestApi`を実行した`FlowID`を指定します。
 2. 期待値としてのHTTPステータスコードを数値で設定します。
+
+------
+
+### AssertHttpHeader
+
+#### Functions
+
+1. REST-APIの実行結果のHTTPヘッダを確認します。
+
+#### Structure
+
+```yaml
+commands:
+  - id: "コマンドのID"
+    summary : "コマンドの概要（任意）"
+    description : "コマンドの詳細（任意）"
+    command: "AssertHttpHeader"
+    target: "ExecuteRestApiを実行したFlowID" # (1)
+    header: "HTTPヘッダ名" # (2)
+    value: "期待値" # (3)
+```
+1. `ExecuteRestApi`を実行した`FlowID`を指定します。
+1. 確認対象のHTTPヘッダ名を指定します。
+2. 期待値としてのHTTPヘッダの値を設定します。設定値が複数項目の場合、セミコロン区切りで指定してください。
