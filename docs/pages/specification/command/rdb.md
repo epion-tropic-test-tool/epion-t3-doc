@@ -4,14 +4,14 @@ RDB（Relational DataBase）関連のコマンドを提供します。
 
 |機能名|概要|アサート|エビデンス|
 |:---|:---|:---|:---|
-|[ImportRdbDataRunner](#ImportRdbDataRunner)|RDBに対してデータをインポートする|-|-|
-|ExportRdbDataRunner|RDBからデータをエクスポートする|-|Yes|
-|ExecuteRdbQueryRunner|RDBへ任意のクエリーを発行する|-|-|
-|[ExecuteRdbScriptRunner](#ExecuteRdbScriptRunner)|RDBへ任意のスクリプト（SQL）の内容を発行する|-|-|
+|[ImportRdbData](#ImportRdbData)|RDBに対してデータをインポートする|-|-|
+|ExportRdbData|RDBからデータをエクスポートする|-|Yes|
+|[ExecuteRdbQuery](#ExecuteRdbQuery)|RDBへ任意のクエリーを発行する|-|-|
+|[ExecuteRdbScript](#ExecuteRdbScript)|RDBへ任意のスクリプト（SQL）の内容を発行する|-|-|
 
 ------
 
-### ImportRdbDataRunner
+### ImportRdbData
 
 #### Function
 
@@ -49,7 +49,7 @@ DataSetとは、RDBのデータ構造を表したもので、DataSetには、CSV
   
 ------
 
-### 「ExportRdbDataRunner」
+### ExportRdbData
 
 #### Function
 
@@ -57,15 +57,29 @@ DataSetとは、RDBのデータ構造を表したもので、DataSetには、CSV
 
 ------
 
-### 「ExecuteRdbQueryRunner」
+### ExecuteRdbQuery
 
 #### Function
+- RDBに対して任意のクエリーを発行します
+- クエリーに対してはVariable、Profileのバインドが行えます
 
 #### Structure
 
+```yaml
+- id: "コマンドのID"
+  summary : "コマンドの概要（任意）"
+  description : "コマンドの詳細（任意）"
+  command: "ExecuteRdbQuery"
+  rdbConnectConfigRef: "RDBに対する接続先定義の参照ID" # (1)
+  value: "クエリー" # (2)
+```
+1. RDBへの接続先の設定を行っている`Configuration`の参照IDを指定します。
+2. RDBに対して発行するクエリー。クエリーに対しては変数のバインドが行えます。ただし、文字列のバインドを行ってもシングルクォーテーション等は付与しないためクエリーにあらかじめ定義しておいてください。
+
+
 ------
 
-### ExecuteRdbScriptRunner
+### ExecuteRdbScript
 
 #### Function
 
@@ -95,6 +109,8 @@ configurations:
     username: "接続するユーザー"
     password: "接続するパスワード"
     schema: "接続するスキーマ"
+    rdbKind: "(mysql|oracle|postgresql)"
 ```
 
-基本的に本設定は環境依存値を多分に含むため、Profileによるバインドを推奨します。
+基本的に本設定は環境依存値を多分に含むため、Profileによるバインドを推奨します。  
+現状対応しているRDBはMySQL、Oracle、PostgreSQLの３つとなります。

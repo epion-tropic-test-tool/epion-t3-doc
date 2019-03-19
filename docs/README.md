@@ -18,22 +18,5 @@ Epion Tropic Test Tool (略称 : `ETTT`) はテストの効率化を目的とし
 - シナリオの実行結果をHTML形式のレポートとして出力します。
 - 機能(Command)は拡張が行えます。自由な機能を作り込むことが可能です。
 
-
-
-## Function Overview
-
 ![ettt-structure](/pages/specification/images/ettt-structure.png)
-
-このツールが保有する機能の大まかな一覧は以下です。
-
-- ファイルシステムの操作を行う
-- リモートで稼働しているSSHサーバと対話形式の操作を行う
-- SCPによるファイル操作を行う
-- FTPによるファイル操作を行う
-- SeleniumのWebDriverを用いてローカルのブラウザの自動操作を行う
-- AWSのS3に対してAPI発行を行う（一部APIのみ）
-- AWSのSQSに対してAPI発行を行う（一部APIのみ）
-- Redisに対して操作を行う（AWSのElastiCache for Redisを想定）
-- RDBMSに対してSQLを発行する
-- 任意のローカルコマンドの実行を行う
 

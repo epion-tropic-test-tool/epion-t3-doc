@@ -6,8 +6,7 @@
 
 `ETTT`の起動オプションは以下が用意されています。
 
-
-|オプション|説明|必須|例|
+|Option|Description|Required|Example|
 |:---|:---|:---|:---|
 |version(v)|バージョン。現在は`v1.0`のみ対応している。|-|v1.0|
 |target(t)|テスト対象としてシナリオIDを指定|-|-|
@@ -19,6 +18,16 @@
 |noreport(n)|レポート出力抑制指定|-|値は不要|
 |help(h)|ヘルプ表示|-|値は不要|
 
+オプションは、longName(shortName)表記となります。  
+longNameの例
+```
+--output パス
+```
+
+shortNameの例
+```
+-o パス
+```
 
 ## Execute In Jar
 `ETTT`のjarを利用して実行する方法は、通常のJavaのJar指定の実行方法となんら変わりません。
