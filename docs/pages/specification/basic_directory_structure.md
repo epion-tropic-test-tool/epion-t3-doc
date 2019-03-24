@@ -4,7 +4,7 @@
 細かく用途によってファイルを分割・配置することを推奨します。  
 また、これらのシナリオはGitやSubversionによるバージョン管理を行うことが重要です。
 
-### 推奨ディレクトリ構成
+## Best Practice of Directory Structure
 ```
 root
  |

@@ -13,15 +13,14 @@
 |[WDClickElements](#WDClickElements)|タグをクリックします（複数タグ）|-|-|
 |[WDGet](#WDGet)|指定したURLへ遷移します。|-|-|
 |[WDScreenShot](#WDScreenShot)|画面のスクリーンショットを取得します。|-|Yes|
-|[WDSelectByIndexElement](#WDSelectByIndexElement)||-|-|
-|[WDSelectByIndexElements](#WDSelectByIndexElements)||-|-|
-|[WDSelectVisibleTextElement](#WDSelectVisibleTextElement)||-|-|
-|[WDSelectVisibleTextElements](#WDSelectVisibleTextElements)||-|-|
-|[WDSendKeysSpace](#WDSendKeysSpace)||-|-|
+|[WDSelectByIndexElement](#WDSelectByIndexElement)|Selectタグの選択肢をOptionタグのインデックスを指定して選択します。|-|-|
+|[WDSelectByIndexElements](#WDSelectByIndexElements)|Selectタグの選択肢をOptionタグのインデックスを指定して選択します。（複数タグ）|-|-|
+|[WDSelectVisibleTextElement](#WDSelectVisibleTextElement)|Selectタグの選択肢をOptionタグの表示文字列を指定して選択します。|-|-|
+|[WDSelectVisibleTextElements](#WDSelectVisibleTextElements)|Selectタグの選択肢をOptionタグの表示文字列を指定して選択します。（複数タグ）|-|-|
 |[WDSendKeysElement](#WDSendKeysElement)|タグに対して入力を送信します|-|-|
 |[WDSendKeysElements](#WDSendKeysElements)|タグに対して入力を送信します（複数タグ）|-|-|
-|[](#)||-|-|
-|[](#)||-|-|
+|[WDSendKeysSpaceElement](#WDSendKeysSpaceElement)||-|-|
+
 
 
 ## Selenium Command Processing
@@ -106,6 +105,7 @@ commands:
 #### Function
 
 1. WebDriverを終了します
+1. 終了したWebDriverを変数から削除します。
 
 #### Structure
 
@@ -117,6 +117,58 @@ commands:
     description: コマンドの詳細（任意）
     refWebDriver: WebDriverを格納している変数
 ```
+------
+
+### WDClearSendKeysElement
+
+#### Function
+
+1. 指定したタグの内容をクリアします。
+2. 指定したタグに対して入力を行います。
+
+#### Structure
+
+```yaml
+commands: 
+  - id: コマンドのID
+    command: WDClickElement
+    summary: コマンドの概要（任意）
+    description: コマンドの詳細（任意）
+    refWebDriver: WebDriverを格納している変数
+    selector: 対象を特定するためのセレクター種別
+    target: 対象を特定するためのセレクター  # (1)
+    value: 入力値
+```
+
+1. 対象を特定するためのセレクター値を指定します。 
+ 
+------
+
+### WDClearSendKeysElements
+
+#### Function
+
+1. 指定したタグの内容をクリアします。
+1. 指定したタグに対して入力を行います
+1. タグが複数存在する場合に、何個目のタグかを指定することができます
+
+#### Structure
+
+```yaml
+commands: 
+  - id: コマンドのID
+    command: WDClickElement
+    summary: コマンドの概要（任意）
+    description: コマンドの詳細（任意）
+    refWebDriver: WebDriverを格納している変数
+    selector: 対象を特定するためのセレクター種別
+    target: 対象を特定するためのセレクター値
+    value: 入力値
+    elementIndex: 何番目かを指定するインデックス（0始まり）
+```
+
+
+------
 
 ### WDClickElement
 
@@ -163,6 +215,138 @@ commands:
 
 ------
 
+### WDGet
+
+#### Function
+
+1. 指定したURLへ遷移します。
+
+#### Structure
+
+```yaml
+commands: 
+  - id: コマンドのID
+    command: WDGet
+    summary: コマンドの概要（任意）
+    description: コマンドの詳細（任意）
+    refWebDriver: WebDriverを格納している変数
+    target: 遷移したいURL（バインド利用可能） #(1)
+```
+
+1. 遷移したいURLを指定します。 
+
+------
+
+### WDScreenShot
+
+#### Function
+
+1. 指定したWebDriverが操作しているブラウザのスクリーンショットを取得します。
+
+#### Structure
+
+```yaml
+commands: 
+  - id: コマンドのID
+    command: WDScreenShot
+    summary: コマンドの概要（任意）
+    description: コマンドの詳細（任意）
+    refWebDriver: WebDriverを格納している変数
+```
+
+------
+
+### WDSelectByIndexElement
+
+#### Function
+
+1. Selectタグの値をOptionタグのインデックス指定で選択します。
+
+#### Structure
+
+```yaml
+commands: 
+  - id: コマンドのID
+    command: WDSelectByIndexElement
+    summary: コマンドの概要（任意）
+    description: コマンドの詳細（任意）
+    refWebDriver: WebDriverを格納している変数
+    selector: 対象を特定するためのセレクター種別
+    target: 対象を特定するためのセレクター値
+    index: 選択するインデックス（0始まり）
+```
+
+------
+
+### WDSelectByIndexElements
+
+#### Function
+
+1. Selectタグの値をOptionタグのインデックス指定で選択します。
+
+#### Structure
+
+```yaml
+commands: 
+  - id: コマンドのID
+    command: WDSelectByIndexElement
+    summary: コマンドの概要（任意）
+    description: コマンドの詳細（任意）
+    refWebDriver: WebDriverを格納している変数
+    selector: 対象を特定するためのセレクター種別
+    target: 対象を特定するためのセレクター値
+    index: 選択するインデックス（0始まり）
+```
+
+------
+
+### WDSelectVisibleTextElement
+
+#### Function
+
+1. Selectタグの値をOptionタグの表示文字列指定で選択します。
+2. タグが複数存在する場合に、何個目のタグかを指定することができます。
+
+#### Structure
+
+```yaml
+commands: 
+  - id: コマンドのID
+    command: WDSelectByIndexElement
+    summary: コマンドの概要（任意）
+    description: コマンドの詳細（任意）
+    refWebDriver: WebDriverを格納している変数
+    selector: 対象を特定するためのセレクター種別
+    target: 対象を特定するためのセレクター値
+    value: 選択する表示文字列
+    elementIndex: 何番目かを指定するインデックス（0始まり）
+```
+
+------
+
+### WDSelectVisibleTextElements
+
+#### Function
+
+1. Selectタグの値をOptionタグの表示文字列指定で選択します。
+2. タグが複数存在する場合に、何個目のタグかを指定することができます。
+
+#### Structure
+
+```yaml
+commands: 
+  - id: コマンドのID
+    command: WDSelectByIndexElement
+    summary: コマンドの概要（任意）
+    description: コマンドの詳細（任意）
+    refWebDriver: WebDriverを格納している変数
+    selector: 対象を特定するためのセレクター種別
+    target: 対象を特定するためのセレクター値
+    value: 選択する表示文字列
+    elementIndex: 何番目かを指定するインデックス（0始まり）
+```
+------
+
 ### WDSendKeysElement
 
 #### Function
@@ -185,6 +369,7 @@ commands:
 
 1. 対象を特定するためのセレクター値を指定します。 
  
+------
 
 ### WDSendKeysElements
 
@@ -210,137 +395,25 @@ commands:
 
 ------
 
-### WDGet
+### WDSendKeysSpaceElement
+
+スペースキーのみを入力という特殊なコマンドになりますが、
+Radioボタンの選択時にクリックでは反応しない場合に利用することを想定して作成しています。実際に動作確認を行なった[日本Seleniumユーザーコミュニティ
+様のテスト用サイト](http://example.selenium.jp/reserveApp_Renewal/)のRadioボタンにてクリックでは対応ができなかったため、コマンド実装対応を行なっています。
 
 #### Function
 
-1. 指定したURLへ遷移します。
+1. 指定したタグに対してスペースキーの入力を行います。
 
 #### Structure
 
 ```yaml
 commands: 
   - id: コマンドのID
-    command: WDGet
-    summary: コマンドの概要（任意）
-    description: コマンドの詳細（任意）
-    refWebDriver: WebDriverを格納している変数
-    target: 遷移したいURL（バインド利用可能） #(1)
-```
-
-1. 遷移したいURLを指定します。 
- 
- ------
-
-### WDClearSendKeysElements
-
-#### Function
-
-1. 指定したタグの内容をクリアします。
-1. 指定したタグに対して入力を行います
-1. タグが複数存在する場合に、何個目のタグかを指定することができます
-
-#### Structure
-
-```yaml
-commands: 
-  - id: コマンドのID
-    command: WDClickElement
+    command: WDSendKeysSpaceElement
     summary: コマンドの概要（任意）
     description: コマンドの詳細（任意）
     refWebDriver: WebDriverを格納している変数
     selector: 対象を特定するためのセレクター種別
     target: 対象を特定するためのセレクター値
-    value: 入力値
-    elementIndex: 何番目かを指定するインデックス（0始まり）
-```
-
-------
-
-### WDClearSendKeysElement
-
-#### Function
-
-1. 指定したタグの内容をクリアします。
-1. 指定したタグに対して入力を行います。
-
-#### Structure
-
-```yaml
-commands: 
-  - id: コマンドのID
-    command: WDClickElement
-    summary: コマンドの概要（任意）
-    description: コマンドの詳細（任意）
-    refWebDriver: WebDriverを格納している変数
-    selector: 対象を特定するためのセレクター種別
-    target: 対象を特定するためのセレクター  # (1)
-    value: 入力値
-```
-
-1. 対象を特定するためのセレクター値を指定します。 
- 
- ------
-
-### WDScreenShot
-
-#### Function
-
-1. 指定したWebDriverが操作しているブラウザのスクリーンショットを取得します。
-
-#### Structure
-
-```yaml
-commands: 
-  - id: コマンドのID
-    command: WDScreenShot
-    summary: コマンドの概要（任意）
-    description: コマンドの詳細（任意）
-    refWebDriver: WebDriverを格納している変数
-```
-
- ------
-
-### WDSelectByIndexElement
-
-#### Function
-
-1. Selectタグの値をOptionタグのインデックス指定で選択します。
-
-#### Structure
-
-```yaml
-commands: 
-  - id: コマンドのID
-    command: WDSelectByIndexElement
-    summary: コマンドの概要（任意）
-    description: コマンドの詳細（任意）
-    refWebDriver: WebDriverを格納している変数
-    selector: 対象を特定するためのセレクター種別
-    target: 対象を特定するためのセレクター値
-    index: 選択するインデックス（0始まり）
-```
-
- ------
-
-### WDSelectByIndexElements
-
-#### Function
-
-1. Selectタグの値をOptionタグのインデックス指定で選択します。
-2. タグが複数存在する場合に、何個目のタグかを指定することができます。
-
-#### Structure
-
-```yaml
-commands: 
-  - id: コマンドのID
-    command: WDSelectByIndexElement
-    summary: コマンドの概要（任意）
-    description: コマンドの詳細（任意）
-    refWebDriver: WebDriverを格納している変数
-    selector: 対象を特定するためのセレクター種別
-    target: 対象を特定するためのセレクター値
-    index: 選択するインデックス（0始まり）
-    elementIndex: 何番目かを指定するインデックス（0始まり）
 ```
