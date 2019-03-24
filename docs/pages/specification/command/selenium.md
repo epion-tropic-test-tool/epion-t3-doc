@@ -17,9 +17,9 @@
 |[WDSelectByIndexElements](#WDSelectByIndexElements)|Selectタグの選択肢をOptionタグのインデックスを指定して選択します。（複数タグ）|-|-|
 |[WDSelectVisibleTextElement](#WDSelectVisibleTextElement)|Selectタグの選択肢をOptionタグの表示文字列を指定して選択します。|-|-|
 |[WDSelectVisibleTextElements](#WDSelectVisibleTextElements)|Selectタグの選択肢をOptionタグの表示文字列を指定して選択します。（複数タグ）|-|-|
-|[WDSendKeysElement](#WDSendKeysElement)|タグに対して入力を送信します|-|-|
-|[WDSendKeysElements](#WDSendKeysElements)|タグに対して入力を送信します（複数タグ）|-|-|
-|[WDSendKeysSpaceElement](#WDSendKeysSpaceElement)||-|-|
+|[WDSendKeysElement](#WDSendKeysElement)|タグに対して入力を送信します。|-|-|
+|[WDSendKeysElements](#WDSendKeysElements)|タグに対して入力を送信します。（複数タグ）|-|-|
+|[WDSendKeysSpaceElement](#WDSendKeysSpaceElement)|タグに対してスペースキー入力を送信します。|-|-|
 
 
 
