@@ -18,5 +18,5 @@ Epion Tropic Test Tool (略称 : `ETTT`) はテストの効率化を目的とし
 - シナリオの実行結果をHTML形式のレポートとして出力します。
 - 機能(Command)は拡張が行えます。自由な機能を作り込むことが可能です。
 
-![ettt-structure](/pages/specification/images/ettt-structure.png)
+![ettt-structure](/media/ettt-structure.png)
 

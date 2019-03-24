@@ -14,7 +14,7 @@
 #### 例：テキストファイルの場合
 ログの`Assert`を行う場合には、対象のログの取得を`Evidence`取得系のコマンドを用いて取得します。その後、`Assert`系のコマンドではEvidenceを取得した`FlowID`を指定して対象のログを参照します。
 
-![assert-and-evidence](/pages/specification/images/assert-evidence-image.png)
+![assert-and-evidence](/media/assert-evidence-image.png)
 
 この流れを支持するためのシナリオファイルの例としては、以下のようになります。
 最小サンプルとなるため説明等の要素は全て排除しています。

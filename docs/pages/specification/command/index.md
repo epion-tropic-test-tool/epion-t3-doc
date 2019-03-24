@@ -10,4 +10,4 @@
 |[epion-t3-rest](pages/specification/command/basic.md)|com.zomu.t.epion.tropic.test.tool.rest|REST関連の機能|
 |[epion-t3-rdb](pages/specification/command/rdb.md)|com.zomu.t.epion.tropic.test.tool.rdb|RDBへのアクセスやアサーションを行う機能|
 |[epion-t3-ssh](pages/specification/command/ssh.md)|com.zomu.t.epion.tropic.test.tool.ssh|SSH関連の機能|
-
+|[epion-t3-selenium](pages/specification/command/selenium.md)|com.zomu.t.epion.tropic.test.tool.selenium|Selenium関連の機能|

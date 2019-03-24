@@ -78,7 +78,11 @@ scenarios :
     noreport: Execute Non Report Output Option. # (5)
 ```
 
-1. 対象とする
+1. 対象とするシナリオIDを指定します。`info`の`id`を指定します。
+1. ツール実行時に`profile`を指定したものを上書きしたい場合に利用します。
+1. ツール実行時に`mode`を指定したものを上書きしたい場合に利用します。
+1. ツール実行時に`debug`を指定したものを上書きしたい場合に利用します。
+1. ツール実行時に`noreport`を指定したものを上書きしたい場合に利用します。
 
 ### Flows
 シナリオの動作制御を行うものです。
@@ -150,11 +154,12 @@ customs:
 
 ### Structure Image
 
-シナリオ内の、Flow、Command、Configuration、Profile、Variableの関係性を図に表します。  
+シナリオ内の、Scenario、Flow、Command、Configuration、Profile、Variableの関係性を図に表します。  
 
-![structure-image](pages/specification/images/scenario-image.png)
+![structure-image](/media/scenario-image.png)
 
-この図の通り、シナリオとは、Flow、Command、Configuration、Profileの定義の集合です。
+この図の通り、シナリオとは、Scenario、Flow、Command、Configuration、Profileの定義の集合です。
 Variableはシナリオ上に静的に定義が可能ではありますが、基本的な用途として動的な値を管理するものとなるので、
 シナリオ定義とは分離して記載しています。
 また、Flowはあくまで、Command、Configuration、Profile、Variableを組み合わせたユーザ動作の流れを定義しているだけのものということを理解してください。
+さらに、Scenarioが少しわかりづらいですが、シナリオを複数まとめて実行するためのWrapする要素となります。

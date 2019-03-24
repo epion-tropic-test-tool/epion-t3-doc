@@ -4,9 +4,12 @@
 
 |Name|Summary|Assert|Evidence|
 |:---|:---|:---|:---|
-|[SetVariable](#SetVariable)|変数を設定します|-|-|
-|[RemoveVariable](#RemoveVariable)|変数を設定します|-|-|
-|[FileGet](#FileGet)|ファイルシステムにてファイルを取得します|-|Yes|
+|[SetVariable](#SetVariable)|変数を設定します。|-|-|
+|[RemoveVariable](#RemoveVariable)|変数を設定します。|-|-|
+|[CreateNowDate](#CreateNowDate)|現在日付を作成して変数に設定します。|-|-|
+|[AddDate](#AddDate)|日付に対して指定した日付を足します。足した結果を変数に設定します。|-|-|
+|[FormatDateString](#FormatDateString)|日付をフォーマットに従って文字列に変換します。変換した文字列を変数に設定します。|-|-|
+|[FileGet](#FileGet)|ファイルシステムにてファイルを取得します。|-|Yes|
 |[AssertExistsStringInText](#AssertExistsStringInText)|テキストファイル中に指定した文字列を含んでいることを確認|Yes|-|
 |[AssertNotExistsStringInText](#AssertNotExistsStringInText)|テキストファイル中に指定した文字列を含んでいないことを確認|Yes|-|
 
