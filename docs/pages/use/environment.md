@@ -4,5 +4,4 @@
 |ソフトウェア|内容|
 |:---|:---|
 |[Java](https://java.com/ja/download/)|Javaの1.8以上がインストールされており、パスが通っていることを確認してください。|
-|[Graphviz](http://www.graphviz.org/)|Graphvizの2.26.3以上がインストールされており、パスが通っていることを確認してください。レポート機能を利用しない場合は、インストールおよびパスの設定は不要になります。|
-|[Gradle](https://gradle.org/)|`ETTT`のビルドに利用します。バージョン4以降を推奨しています。基本的にビルド時は、`GradleWrapper`をご利用ください。|
+|[Gradle](https://gradle.org/)|`ETTT`のビルドに利用します。バージョン5以降を推奨しています。基本的にビルド時は、`GradleWrapper`をご利用ください。|

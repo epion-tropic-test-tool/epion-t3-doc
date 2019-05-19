@@ -1,6 +1,7 @@
 # Command
+この章をご覧になっている方は既にCommandの設計もご覧になっているため、繰り返しになるかもしれませんが、
 Commandはシナリオにおける実際の動作を行うものです。  
-このCommandをカスタマイズすることによって`ETTT`で任意の動作を行えるようにできます。  
+このCommandをカスタマイズとして作成することによって `ETTT` で任意の動作を行えます。  
 
 ## CommandにおけるModelとRunner
 Commandのカスタマイズを行うためには、ModelクラスとRunnerクラスを1対1の関係性で作成する必要があります。
@@ -12,42 +13,45 @@ CommandのModelクラスを実装するためには、`Command`クラスを継�
 また、Commandであることを示すための`CommandDefinition`アノテーションを付与する必要があります。
 それぞれ、FQCNは以下となります。
 ~~~
-com.zomu.t.epion.tropic.test.tool.core.model.scenario.Command
-com.zomu.t.epion.tropic.test.tool.core.annotation.CommandDefinition
+com.epion_t3.core.model.scenario.Command
+com.epion_t3.core.annotation.CommandDefinition
 ~~~
 
 
 先ずはModelクラスの作成の前にスーパークラスである`Command`クラスの仕様を理解する必要があります。
 
-|Field|Type|Required|Description|
+|Field|Type|Description|
 |:---|:---:|:---:|:---|
-|id|String|Yes|Commandを定義する際に割り振るID。IDなので一意性を持ってユーザが設定するものです。|
-|summary|String|No|Commandの概要。|
-|description|String|No|Commandの説明。概要より詳細に記載されることを想定しています。|
-|command|String|Yes|Commandの指定。ユーザが利用時に`@CommandDefinition`のid属性で定義してある値を指定します。|
-|target|String|No|Commandの対象を指定する想定で作成したフィールドです。デフォルト状態で存在するフィールドで自由に利用できます。|
-|value|String|No|Commandで利用する叩いを指定する想定で作成したフィールドです。デフォルト状態で存在するフィールドで自由に利用できます。|
+|id|String|Commandを定義する際に割り振るID。IDなので一意性を持ってユーザが設定するものです。|
+|summary|String|Commandの概要。|
+|description|String|Commandの説明。概要より詳細に記載されることを想定しています。|
+|command|String|Commandの指定。ユーザが利用時に`@CommandDefinition`のid属性で定義してある値を指定します。|
+|target|String|Commandの対象を指定する想定で作成したフィールドです。デフォルト状態で存在するフィールドで自由に利用できます。|
+|value|String|Commandで利用する叩いを指定する想定で作成したフィールドです。デフォルト状態で存在するフィールドで自由に利用できます。|
 
 次にカスタマイズする祭のModelクラスの実装例を示します。
 
 ```java
-package com.zomu.t.epion.tropic.test.tool.basic.command.model;
+package com.epion_t3.basic.command.model;
 
-import com.zomu.t.epion.tropic.test.tool.basic.command.runner.StringConcatRunner;
-import com.zomu.t.epion.tropic.test.tool.core.annotation.CommandDefinition;
-import com.zomu.t.epion.tropic.test.tool.core.model.scenario.Command;
-import org.apache.bval.constraints.NotEmpty;
+import com.epion_t3.basic.command.runner.StringConcatRunner;
+import com.epion_t3.core.common.annotation.CommandDefinition;
+import com.epion_t3.core.common.bean.scenario.Command;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
+@Getter
+@Setter
 @CommandDefinition(
   id = "StringConcat", /* (1) */
   runner = StringConcatRunner.class) /* (2) */
 public class StringConcat extends Command {
 
-  @NotEmpty
-  private List<String> referenceVariables; /* (3) */
+    private List<String> referenceVariables; /* (3) */
 
-// omitted Getter And Setter Methods
+    // omitted Getter And Setter Methods
 
 }
 ```
@@ -58,7 +62,7 @@ public class StringConcat extends Command {
 
 1. idにはCommandの名前を設定します。このidは重複すると`ETTT`が意図せぬ挙動を行う場合がありますので命名する際には一意性に気をつけてください。
 2. runnerにはCommandの実処理を行うRunnerクラスを設定します。`ETTT`では起動時に`@CommandDefinition`アノテーションからModelクラスとRunnerクラスを紐づける時に利用します。
-3. カスタマイズしたい処理に必要な情報を得るためのフィールドを定義します。BeanVaridationを行うことができます。`ETTT`では軽量な[Apache BVal](http://bval.apache.org/)を利用しています。
+3. カスタマイズしたい処理に必要な情報を得るためのフィールドを定義します。このパラメータを必須としたい場合には、カスタム機能の設計を確認してください。
 
 このModelクラスに対するYAMLの定義例は以下のようになります。
 
@@ -179,11 +183,11 @@ Modelクラスの説明でも例に出した`StringConcat`コマンドに対す�
 このCommandクラスは、指定された文字列(変数 or 固定値)を結合して１つの文字列としてシナリオスコープの変数に登録するという機能を提供します。
 
 ```java
-package com.zomu.t.epion.tropic.test.tool.basic.command.runner;
+package com.epion_t3.basic.command.runner;
 
-import com.zomu.t.epion.tropic.test.tool.basic.command.model.StringConcat;
-import com.zomu.t.epion.tropic.test.tool.core.command.runner.impl.AbstractCommandRunner;
-import com.zomu.t.epion.tropic.test.tool.core.context.EvidenceInfo;
+import com.epion_t3.basic.command.model.StringConcat;
+import com.epion_t3.core.command.runner.impl.AbstractCommandRunner;
+import com.epion_t3.core.context.EvidenceInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 

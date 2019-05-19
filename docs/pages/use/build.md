@@ -1,16 +1,39 @@
-# Build
+# Project
 
-### Create Executable Jar
+テストを行うためには、シナリオを管理するためのプロジェクトを作成します。  
+プロジェクトは、[Basic Directory Structure](/pages/specification/basic_directory_structure) で定義したシナリオ体型に
+`ETTT` を実行するためのライブラリや実行ファイル等を組み合わせたものになります。（実行プロジェクト）
+`ETTT` では `Gradle` or `Maven` をベースとした実行プロジェクトを推奨しています。
 
-`ETTT`は現状リリース版が存在しなく、カスタム機能をシステム的に取り込む仕組みも用意できていません。  
-そのため、利用時にはユーザーの方々に個別にビルドして実行可能Jarを作成して頂く必要があります。  
+### Create Project
 
-#### Clone Project
+`Gradle` or `Maven` をベースとした `ETTT` の実行プロジェクトのテンプレートを用意しています。  
+[GitHubのリポジトリ](https://github.com/epion-tropic-test-tool/epion-t3-scenario-template) からダウンロードもしくはForkを行い作成します。
 
-GitHubにて公開しているプロジェクトをクローンします。
-```bash
-git clone https://github.com/epion-tropic-test-tool/epion-t3.git
+#### Structure
+
+テンプレートプロジェクトは以下のような構成となっています。
+
 ```
+root
+ |-- result
+ |-- scenarios
+ |     `-- see "Basic Directory Structure"
+ |-- build.gradle
+ |-- gradlew
+ |-- gradlew.bat
+ |-- gradle
+ |     `-- wrapper
+ |           |-- gradle-wrapper.jar
+ |           `-- gradle-wrapper.properties
+
+```
+
+`ETTT` を実行するためのライブラリは `build.gradle` もしくは `pom.xml` に定義します。
+使用したいカスタム機能があれば、ここに追加する必要があります。
+
+
+
 
 #### Build Project
 

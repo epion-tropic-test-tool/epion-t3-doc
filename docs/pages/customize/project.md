@@ -9,16 +9,19 @@
 
 repositories {
     maven {
-        // ETTTのCoreライブラリが公開されているリポジトリ
-        url  "https://dl.bintray.com/takashno/maven"
+        url "https://dl.bintray.com/epion-tropic-test-tool/maven"
     }
+    mavenCentral()
+    jcenter()
 }
 
 dependencies {
   // ETTTのCoreライブラリを参照
-  compile project('com.zomu.t:epion-t3-core:0.0.1')  
+  api 'com.epion_t3:epion-t3-core:0.0.1' 
 }
 ```
 
-`ETTT`をカスタマイズするために必要な定義は、`ETTT`のCoreライブラリを参照するのみです。現状はJCenterに対して公開申請を行なっている途中です。そのためMavenのリポジトリを追加する必要があります。
-その他必要なライブラリに関しては追加します。
+`ETTT`をカスタマイズするために必要な定義は、`ETTT`のCoreライブラリを参照するのみです。  
+JCenterにてライブラリは公開されています。
+ただし最新版を利用したい場合はは`epion-tropic-test-tool` のリポジトリを参照してください。
+その他必要なライブラリに関しては、ユーザが適宜追加してください。

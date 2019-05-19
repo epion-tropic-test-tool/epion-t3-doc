@@ -25,13 +25,14 @@
   
 * How To Use
   * [Environment](pages/use/environment.md)
-  * [Build](pages/use/build.md)
+  * [Project](pages/use/build.md)
   * [Run](pages/use/run.md)
   * [Result](pages/use/result.md)
 
 * How To Customize
-
+  * [Overview](pages/customize/overview.md)
   * [Environment](pages/customize/environment.md)
+  * [Customization Spec](pages/customize/spec.md)
   * [Project](pages/customize/project.md)
   * [Message](pages/customize/message.md)
   * [Error Process](pages/customize/errorprocess.md)
