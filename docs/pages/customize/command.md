@@ -1,5 +1,5 @@
 # Command
-この章をご覧になっている方は既にCommandの設計もご覧になっているため、繰り返しになるかもしれませんが、
+この章をご覧になっている方は既に[Customization Spec](pages/customize/spec.md)もご覧になっているため、繰り返しになるかもしれませんが、
 Commandはシナリオにおける実際の動作を行うものです。  
 このCommandをカスタマイズとして作成することによって `ETTT` で任意の動作を行えます。  
 
@@ -21,7 +21,7 @@ com.epion_t3.core.annotation.CommandDefinition
 先ずはModelクラスの作成の前にスーパークラスである`Command`クラスの仕様を理解する必要があります。
 
 |Field|Type|Description|
-|:---|:---:|:---:|:---|
+|:---|:---:|:---|
 |id|String|Commandを定義する際に割り振るID。IDなので一意性を持ってユーザが設定するものです。|
 |summary|String|Commandの概要。|
 |description|String|Commandの説明。概要より詳細に記載されることを想定しています。|
@@ -98,8 +98,8 @@ CommandのRunnerクラスを実装するためには、`CommandRunner`インタ�
 CommandのRunnerクラスを作成する場合は、Commandの処理に必要な処理を提供している`AbstractCommandRunner`を継承します。
 FQCNはぞれぞれ以下となります。
 ~~~
-com.zomu.t.epion.tropic.test.tool.core.command.runner.CommandRunner
-com.zomu.t.epion.tropic.test.tool.core.command.runner.impl.AbstractCommandRunner
+com.epion_t3.core.command.runner.CommandRunner
+com.epion_t3.core.command.runner.impl.AbstractCommandRunner
 ~~~
 
 `AbstractCommandRunner`を継承したクラスではexecuteメソッドを必ず実装する必要があります。
