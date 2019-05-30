@@ -7,7 +7,7 @@
 
 ## Run Gradle Task
 
-実行プロジェクトを作成している場合には、
+[実行プロジェクト](pages/use/build.md)を作成している場合には、
 
 
 ## Options

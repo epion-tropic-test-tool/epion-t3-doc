@@ -66,7 +66,7 @@ dependencies {
 task execute(type: JavaExec) {
     main = "com.epion_t3.core.application.Application"
     classpath = configurations.et3
-    args = [
+    args = [  // 引数を指定
             '-v',
             'v1.0',
             '-m',
@@ -79,4 +79,22 @@ task execute(type: JavaExec) {
             "${projectDir}/scenario"
     ]
 }
+defaultTasks 'execute'
 ```
+
+Gradleに慣れていない方は、少し扱いづらいかもしれないが、
+自分で変更する点は主に依存関係（dependencies）と実行引数（args）の部分となる。
+
+##### 依存関係の指定方法
+[Gradle](https://gradle.org/) の依存関係定義のため、公式ドキュメントを見てもらった方が確実です。
+ここでは、抜粋的に設定方法を説明します。
+
+```
+dependencies {
+  et3 'GroupId:ArtifactId:Version'
+
+  // omitted 
+```
+
+##### 実行引数の指定方法
+実行引数については、[How To Use - Run](/pages/use/run.md) の `Option` にて詳細に記載をしているので参照してください。
