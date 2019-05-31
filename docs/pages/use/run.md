@@ -1,14 +1,8 @@
 # Run
 
 `ETTT`の実行方法について説明します。  
-実行方法は、いくつかありますが`Gradle`もしくは`Maven`を利用した起動方法を推奨しています。  
+実行方法は、`Gradle`もしくは`Maven`を利用した起動方法を推奨しています。  
 推奨する実行方法を行うプロジェクトの作り方は、[Project](pages/use/build.md) を参照してください。
-
-
-## Run Gradle Task
-
-[実行プロジェクト](pages/use/build.md)を作成している場合には、
-
 
 ## Options
 
@@ -37,14 +31,6 @@ shortNameの例
 -o パス
 ```
 
-## Execute In Jar
-`ETTT`のjarを利用して実行する方法は、通常のJavaのJar指定の実行方法となんら変わりません。
-以下のようにコマンドプロンプトやターミナルから実行することができます。
-
-```bash
-java -jar epion-t3.jar {options}
-```
-
 ### Output Debug Log
 
 `ETTT`の実行時のログのレベルを変更したい場合には、JVMの引数にて定義を行います。  
@@ -53,4 +39,28 @@ java -jar epion-t3.jar {options}
 
 ```bash
 java -jar epion-t3.jar -DloggerLevel=DEBUG {options}
+```
+
+## Run with Gradle Task
+
+[実行プロジェクト](pages/use/build.md)を作成している場合には、`Gradle` の機能を利用して実行が可能です。
+`build.gradle` を設定済みであれば `gradlew` コマンドを実行するのみで良いです。
+`Gradle Wrapper` という機能を利用することにより `Gradle` のダウンロード・インストール等は不要になります。  
+`Proxy` による接続を行う場合には設定が必要になる可能性があります。
+
+```bash
+$ cd {project_root}
+$ ./gradlew
+```
+
+## Run with Maven Build
+
+[実行プロジェクト](pages/use/build.md)を作成している場合には、`Maven` の機能を利用して実行が可能です。
+`pom.xml` を設定済みであれば `mvnw` コマンドを実行するのみで良いです。
+`Maven Wrapper` という機能を利用することにより `Maven` のダウンロード・インストール等は不要になります。  
+`Proxy` による接続を行う場合には設定が必要になる可能性があります。
+
+```bash
+$ cd {project_root}
+$ ./mvnw
 ```
