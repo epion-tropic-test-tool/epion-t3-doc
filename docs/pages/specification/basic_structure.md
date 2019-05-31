@@ -145,9 +145,9 @@ commands :
 ```yaml
 customs:
   packages: # (1)
-    core: "com.zomu.t.epion.tropic.test.tool.core" # (2)
-    basic: "com.zomu.t.epion.tropic.test.tool.basic" # (3)
-    rest: "com.zomu.t.epion.tropic.test.tool.rest" # (3)
+    core: "com.epion_t3.core" # (2)
+    basic: "com.epion_t3.basic" # (3)
+    rest: "com.epion_t3.rest" # (3)
 ```
 
 1. カスタム機能を利用するには、カスタム機能を読み込むためのパッケージの指定が必要になります。パッケージはカスタム機能が実装している`Java`クラスのパッケージになります。カスタム機能一覧にてパッケージの一覧を用意しているため適宜参照の上設定してください。
