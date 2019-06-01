@@ -1,5 +1,5 @@
 # Command
-この章をご覧になっている方は既に[Customization Spec](pages/customize/spec.md)もご覧になっているため、繰り返しになるかもしれませんが、
+この章をご覧になっている方は既に[Customization Spec](pages/customize/spec.md)もご覧になっていると考えられるため繰り返しになるかもしれませんが、
 Commandはシナリオにおける実際の動作を行うものです。  
 このCommandをカスタマイズとして作成することによって `ETTT` で任意の動作を行えます。  
 
@@ -7,6 +7,8 @@ Commandはシナリオにおける実際の動作を行うものです。
 Commandのカスタマイズを行うためには、ModelクラスとRunnerクラスを1対1の関係性で作成する必要があります。
 ModelクラスはYAMLの定義を読み込むためのJavaBeansです。RunnerはYAMLから読み込んだ情報を元に実際に処理を行うためのクラスです。
 それぞれのクラスに対して `ETTT` にて決められたインタフェースの実装やスーパークラスの継承が必要になります。
+
+![](media/command-model-runner.png)
 
 ## Modelの作成
 CommandのModelクラスを実装するためには、`Command`クラスを継承する必要があります。

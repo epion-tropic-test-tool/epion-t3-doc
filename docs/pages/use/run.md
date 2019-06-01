@@ -53,6 +53,12 @@ $ cd {project_root}
 $ ./gradlew
 ```
 
+Windows以外で実行する場合には、`gradlew` の権限をchmod等で必要に応じて変更してください。
+
+```bash
+$ chmod +x gradlew
+```
+
 ## Run with Maven Build
 
 [実行プロジェクト](pages/use/build.md)を作成している場合には、`Maven` の機能を利用して実行が可能です。
@@ -63,4 +69,10 @@ $ ./gradlew
 ```bash
 $ cd {project_root}
 $ ./mvnw
+```
+
+Windows以外で実行する場合には、`mvnw` の権限をchmod等で必要に応じて変更してください。
+
+```bash
+$ chmod +x mvnw
 ```

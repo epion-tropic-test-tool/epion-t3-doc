@@ -32,8 +32,8 @@
 * How To Customize
   * [Overview](pages/customize/overview.md)
   * [Environment](pages/customize/environment.md)
-  * [Customization Spec](pages/customize/spec.md)
   * [Project](pages/customize/project.md)
+  * [Customization Spec](pages/customize/spec.md)
   * [Message](pages/customize/message.md)
   * [Error Process](pages/customize/errorprocess.md)
   * [Flow](pages/customize/flow.md)
