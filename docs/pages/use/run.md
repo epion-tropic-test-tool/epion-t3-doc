@@ -18,6 +18,7 @@
 |profile(p)|プロファイルを指定。複数のプロファイルはカンマ区切りで指定。|-|develop,integration|
 |debug(d)|デバッグモード指定|-|-|
 |noreport(n)|レポート出力抑制指定|-|値は不要|
+|webassets(a)|Webアセット（CSS・JS・Image）の接頭辞となるパスを指定。オフライン環境での利用にて使用。|-|-|
 |help(h)|ヘルプ表示|-|値は不要|
 
 オプションは、longName(shortName)表記となります。  
