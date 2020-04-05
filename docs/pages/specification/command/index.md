@@ -5,7 +5,7 @@
 
 |GroupId|ライブラリ名(ArtifactId)|パッケージ|概要|
 |:---|:---|:---|:---|
-|com.epion_t3|[epion-t3-basic](pages/specification/command/basic.md)|com.epion_t3.basic|基本機能|
+|com.epion_t3|[epion-t3-basic](https://github.com/epion-tropic-test-tool/epion-t3-basic/blob/master/basic_spec.md ':include :type=markdown')|com.epion_t3.basic|基本機能|
 |com.epion_t3|[epion-t3-log](pages/specification/command/log.md)|com.epion_t3.log|ログ関連の機能|
 |com.epion_t3|[epion-t3-rest](pages/specification/command/basic.md)|com.epion_t3.rest|REST関連の機能|
 |com.epion_t3|[epion-t3-rdb](pages/specification/command/rdb.md)|com.epion_t3.rdb|RDBへのアクセスやアサーションを行う機能|
