@@ -15,12 +15,12 @@
 |com.epion_t3|[epion-t3-selenium](https://github.com/epion-tropic-test-tool/epion-t3-selenium/blob/master/selenium_spec.md)|com.epion_t3.selenium|Selenium関連の機能|
 
 
-### GroupId/ArtifactId について
-[How To Use - Project](pages/use/build.md) にて説明していますが、それぞれの機能を利用するために
-ビルドシステムの設定ファイル（`build.gradle` or `pom.xml`）に対してライブラリの依存関係の定義を行います。
+### GroupId / ArtifactId について
+[How To Use - Project](pages/use/build.md) にて説明していますが、  
+それぞれの機能を利用するためにビルドシステムの設定ファイル（`build.gradle` or `pom.xml`）に対してライブラリの依存関係の定義を行います。  
 その際に指定するのは、上記表の `GroupId` と `ArtifactId` およびそれぞれのライブラリの `Version` が必要になります。
 
 ### パッケージについて
-[Basic Structure - Customs](pages/specification/basic_structure?id=customs) にて説明していますが、
-それぞれの機能を利用するためにシナリオに対して `パッケージ` を指定します。
+[Basic Structure - Customs](pages/specification/basic_structure?id=customs) にて説明していますが、  
+それぞれの機能を利用するためにシナリオに対して `パッケージ` を指定します。  
 その際に指定するのは、上記表の `パッケージ` が必要になります。
