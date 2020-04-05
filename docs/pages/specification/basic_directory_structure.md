@@ -5,22 +5,25 @@
 また、これらのシナリオはGitやSubversionによるバージョン管理を行うことが重要です。
 
 ## Best Practice of Directory Structure
+
+`ETTT` では以下のディレクトリ構成とファイル配置にてテストシナリオを作成していただくとスムーズにメンテナンスが可能になると考えています。
+
 ```
 root
  |
- |-- configurations
+ |-- configurations                             // 各種機能の設定についての定義を格納するディレクトリ
  |     |
- |     `-- t3_{Configurations-Unique-ID}.yaml
+ |     `-- t3_{Configurations-Unique-ID}.yaml   // 各設定を記載するファイル
  |
- |-- customs
+ |-- customs                                    // 利用するカスタム機能の定義
  |     |
  |     `-- t3_custom.yaml
  |
- |-- parts
+ |-- parts                                      // 複数のテストシナリオで使うコマンド定義をパーツ化し格納するディレクトリ
  |     |
  |     `-- {Parts-Unique-ID}
  |           |
- |           |-- t3_{Parts-Unique-ID}.yaml
+ |           |-- t3_{Parts-Unique-ID}.yaml      // 共通的に利用するようなコマンドの定義
  |           |
  |           |-- data
  |           |     |-- csv_data.csv
@@ -32,13 +35,13 @@ root
  |                 |-- excel_data.xlsx
  |                 `-- etc...
  |
- |-- profiles
+ |-- profiles                                   // 環境毎に異なる値の定義を格納するディレクトリ
  |     |
- |     `-- t3_{ProfileName}.yaml
+ |     `-- t3_{ProfileName}.yaml                // 環境毎の具体的な値の定義
  |
  |-- scenarios
  |     |
- |     `-- {Scenario-Unique-ID}
+ |     `-- {Scenario-Unique-ID}                 // テストシナリオ
  |           |
  |           |-- t3_{Scenario-Unique-ID}.yaml
  |           |
@@ -54,7 +57,7 @@ root
  |
  `-- suite
        |
-       `-- t3_{Suites-Unique-ID}.yaml
+       `-- t3_{Suites-Unique-ID}.yaml          // 複数のテストシナリオを実行するための定義
 
 ```
 
@@ -67,7 +70,8 @@ root
 明示的に切り出しておくことによって、このシナリオ群はどのようなカスタム機能を利用するのかが明快になりメンテナンス性が高まります。
 
 ### Parts
-`parts`とは、汎用的なコマンド定義を行い文字通りパーツとして様々なシナリオから呼び出すことを目的として切り出したものです。
+複数のテストシナリオで同じようなコマンドの定義を行っている場合は、`parts` に切り出して参照することで定義ファイルの記述量を減らすことができます。    
+汎用的なコマンド定義を行い文字通りパーツとして様々なテストシナリオから呼び出すようにします。
 
 ### Profiles
 `profiles`は、プロファイルの定義を行うためだけのYAMLを格納するものです。
