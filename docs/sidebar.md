@@ -16,12 +16,13 @@
   
 * Available Commands
   * [Index](pages/specification/command/index.md)
-    * [Basic](pages/specification/command/basic.md)
-    * [REST](pages/specification/command/rest.md)
-    * [RDB](pages/specification/command/rdb.md)
-    * [FTP](pages/specification/command/ftp.md)
-    * [SSH](pages/specification/command/ssh.md)
-    * [Selenium](pages/specification/command/selenium.md)
+    * [Basic](https://github.com/epion-tropic-test-tool/epion-t3-basic/blob/master/basic_spec.md)
+    * [Log](https://github.com/epion-tropic-test-tool/epion-t3-log/blob/master/log_spec.md)
+    * [REST](https://github.com/epion-tropic-test-tool/epion-t3-rest/blob/master/rest_spec.md)
+    * [RDB](https://github.com/epion-tropic-test-tool/epion-t3-rd/blob/master/rd_spec.md)
+    * [FTP](https://github.com/epion-tropic-test-tool/epion-t3-ftp/blob/master/ftp_spec.md)
+    * [SSH](https://github.com/epion-tropic-test-tool/epion-t3-ssh/blob/master/ssh_spec.md)
+    * [Selenium](https://github.com/epion-tropic-test-tool/epion-t3-selenium/blob/master/selenium_spec.md)
   
 * How To Use
   * [Environment](pages/use/environment.md)
