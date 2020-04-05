@@ -19,7 +19,7 @@
     * [Basic](https://github.com/epion-tropic-test-tool/epion-t3-basic/blob/master/basic_spec.md)
     * [Log](https://github.com/epion-tropic-test-tool/epion-t3-log/blob/master/log_spec.md)
     * [REST](https://github.com/epion-tropic-test-tool/epion-t3-rest/blob/master/rest_spec.md)
-    * [RDB](https://github.com/epion-tropic-test-tool/epion-t3-rd/blob/master/rdb_spec.md)
+    * [RDB](https://github.com/epion-tropic-test-tool/epion-t3-rdb/blob/master/rdb_spec.md)
     * [FTP](https://github.com/epion-tropic-test-tool/epion-t3-ftp/blob/master/ftp_spec.md)
     * [SSH](https://github.com/epion-tropic-test-tool/epion-t3-ssh/blob/master/ssh_spec.md)
     * [Selenium](https://github.com/epion-tropic-test-tool/epion-t3-selenium/blob/master/selenium_spec.md)
