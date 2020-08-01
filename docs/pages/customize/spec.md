@@ -73,8 +73,8 @@ Javaの [Locale](https://docs.oracle.com/javase/jp/8/docs/api/java/util/Locale.h
 詳細は後述します。
 
 #### 文言の表現について
-文言の表現は、国際化（i18n）対応を行なっているため全て [Locale](https://docs.oracle.com/javase/jp/8/docs/api/java/util/Locale.html) とセットで定義します。
-また、順序性を担保したいものについては、 `order` によって順序を整数値によって決めることができます。
+文言の表現は、国際化（i18n）対応を行なっているため全て [Locale](https://docs.oracle.com/javase/jp/8/docs/api/java/util/Locale.html) とセットで定義します。  
+また、生成する文書に表示される順序性を担保したいものについては、 `order` によって順序を整数値によって決めることができます。
 
 ```yaml
 summary | description など
@@ -86,8 +86,8 @@ summary | description など
 
 ### Structure Details
 
-structureはYAMLと１対１で紐づくModelの構成を定義するものとなります。
-Structureは、FlowまたはCommandのカスタムを行う機能に必要な値をユーザーから入力してもらうインタフェースとなるため
+structureはYAMLと１対１で紐づくModelの構成を定義するものとなります。  
+structureは、FlowまたはCommandのカスタムを行う機能に必要な値をユーザーから入力してもらうインタフェースとなるため
 とても重要なものです。
 
 ```yaml
