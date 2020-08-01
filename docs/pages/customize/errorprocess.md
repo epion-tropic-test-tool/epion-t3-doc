@@ -1,6 +1,7 @@
 # Error Process
-カスタマイズ実装を行う際のエラー処理について説明します。
-`ETTT`では細かく用途分類された例外クラスをいくつか保有していますが、カスタマイズ実装にて利用するのは`SystemException`のみです。
+カスタマイズ実装を行う際のエラー処理について説明します。  
+`ETTT`では細かく用途分類された例外クラスをいくつか保有していますが、  
+カスタマイズ実装にて利用するべき例外は`SystemException`のみです。
 FQCNは以下になります。
 
 ~~~
@@ -35,5 +36,5 @@ throw new SystemException(t, "com.epion_t3.core.err.0002", "1.0.0");
 
 ```
 
-`SystemException`の内部では、`MessageManager`を利用してメッセージの解決を行ないます。
+`SystemException`の内部では、`MessageManager`を利用してメッセージの解決を行ないます。  
 そのため、`Messages`インタフェースを実装したEnumについても引数で受け付けるようにしています。
