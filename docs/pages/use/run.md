@@ -16,7 +16,7 @@
 |output(o)|ツール実行結果のパスを指定|-|-|
 |mode(m)|モード指定。現状は`test`のみ対応している。|-|test|
 |profile(p)|プロファイルを指定。複数のプロファイルはカンマ区切りで指定。|-|develop,integration|
-|debug(d)|デバッグモード指定|-|-|
+|debug(d)|デバッグモード指定。デバッグログを出力する。|-|-|
 |noreport(n)|レポート出力抑制指定|-|値は不要|
 |webassets(a)|Webアセット（CSS・JS・Image）の接頭辞となるパスを指定。オフライン環境での利用にて使用。|-|-|
 |help(h)|ヘルプ表示|-|値は不要|
@@ -30,16 +30,6 @@ longNameの例
 shortNameの例
 ```
 -o パス
-```
-
-### Output Debug Log
-
-`ETTT`の実行時のログのレベルを変更したい場合には、JVMの引数にて定義を行います。  
-起動コマンドに対して以下のように指定を行ってください。  
-例として`DEBUG`レベルで起動するものを示します。
-
-```bash
-java -jar epion-t3.jar -DloggerLevel=DEBUG {options}
 ```
 
 ## Run with Gradle Task
