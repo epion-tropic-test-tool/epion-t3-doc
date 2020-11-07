@@ -23,7 +23,7 @@
     * [FTP](https://github.com/epion-tropic-test-tool/epion-t3-ftp/blob/master/ftp_spec.md)
     * [SSH](https://github.com/epion-tropic-test-tool/epion-t3-ssh/blob/master/ssh_spec.md)
     * [Selenium](https://github.com/epion-tropic-test-tool/epion-t3-selenium/blob/master/selenium_spec.md)
-    * [Snowflake](https://github.com/epion-tropic-test-tool/epion-t3-snowflake/blob/master/snowflake_spec.md)
+    * [Snowflake](https://github.com/epion-tropic-test-tool/epion-t3-snowflake/blob/master/snowflake_spec_ja_JP.md)
     * [AWS Core](https://github.com/epion-tropic-test-tool/epion-t3-aws-core/blob/master/aws-core_spec_ja_JP.md)
     * [AWS A3](https://github.com/epion-tropic-test-tool/epion-t3-aws-s3/blob/master/aws-s3_spec_ja_JP.md)
   
