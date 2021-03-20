@@ -128,23 +128,43 @@ commands :
 コマンドの一覧や、記載方法については [Command Index](pages/specification/command/index.md) を参照してもらいたい。
 
 ### Configurations
+設定は、コマンドやFlowを補助するようなものです。  
+例えばデータベースへの接続を必要とするコマンドがある場合、接続情報を設定として持っていなければなりません。  
+１つ１つのコマンドに対して都度接続先の情報を記載するのは非効率ですし、メンテナンス性を著しく悪くさせるため、
+共通的な設定として切り出して定義できるようにしているわけです。
+
+この設定の定義は各カスタム機能から提供されます。
+
+```yaml
+configurations : 
+ - id: Configuration-Unique-ID # (1）
+   summary: Optional Configuration Summary. # (2） 
+   description: Optional Configuration Description. # (3）
+   configuration: Configuration-ID # (4）
+   # 以降の要素はconfigurationに指定したコマンド毎に異なる。
+```
+
+1. 設定を一意に特定するID
+1. 設定の概要を定義します。記載されていればレポートにも表示されます。
+1. 設定の詳細を定義します。記載されていればレポートにも表示されます。
+1. 設定の種類を定義します。この要素にて、どの機能を実行するかを指定します。
 
 ### Variables
-Variablesはシナリオ上で変数を定義するためのものです。  
+変数そのものについては、[Variables](/pages/specification/variables) にて詳細に説明を行います。  
+シナリオファイル中に表すvariablesはシナリオ上で変数を定義するためのものです。  
 変数としての機能は、シナリオ上に記載するだけの機能ではなく動的な値を管理するためのものですが、  
 シナリオの中でのみ固定的に定義したい変数がある場合は、このセクションで記載します。
 
 ```yaml
 variables:
   global:
-    globalVariableKey: glovalVariableValue
+    "key1": "abc"　# ${global.key1} = "abc"
   scenario:
-    scenarioVariableKey: scenarioVariableValue
+    "key1": "def"　# ${scenario.key1} = "def"
 ```
 
 機能として、グローバル変数（global）も用意はしていますが、  
 シナリオの複雑性や意図せず変数が利用されることなどが発生するため極力利用をしないようにして下さい。
-
 
 
 ### Profiles
