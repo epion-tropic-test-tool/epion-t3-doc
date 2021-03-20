@@ -23,9 +23,10 @@
     * [FTP](https://github.com/epion-tropic-test-tool/epion-t3-ftp/blob/master/ftp_spec.md)
     * [SSH](https://github.com/epion-tropic-test-tool/epion-t3-ssh/blob/master/ssh_spec.md)
     * [Selenium](https://github.com/epion-tropic-test-tool/epion-t3-selenium/blob/master/selenium_spec.md)
-    * [Snowflake](https://github.com/epion-tropic-test-tool/epion-t3-snowflake/blob/master/snowflake_spec_ja_JP.md)
     * [AWS Core](https://github.com/epion-tropic-test-tool/epion-t3-aws-core/blob/master/aws-core_spec_ja_JP.md)
     * [AWS A3](https://github.com/epion-tropic-test-tool/epion-t3-aws-s3/blob/master/aws-s3_spec_ja_JP.md)
+    * [AWS ECS](https://github.com/epion-tropic-test-tool/epion-t3-aws-ecs/blob/master/aws-ecs_spec_ja_JP.md)
+    * [AWS CloudWatchLogs](https://github.com/epion-tropic-test-tool/epion-t3-aws-cwl/blob/master/aws-cwl_spec_ja_JP.md)
   
 * How To Use
   * [Environment](pages/use/environment.md)
