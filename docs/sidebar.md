@@ -16,7 +16,7 @@
   
 * Available Commands
   * [Index](pages/specification/command/index.md)
-    * [Basic](https://github.com/epion-tropic-test-tool/epion-t3-basic/blob/master/basic_spec.md)
+    * [Basic](https://github.com/epion-tropic-test-tool/epion-t3-basic/blob/master/basic_spec_ja_JP.md)
     * [Log](https://github.com/epion-tropic-test-tool/epion-t3-log/blob/master/log_spec.md)
     * [REST](https://github.com/epion-tropic-test-tool/epion-t3-rest/blob/master/rest_spec.md)
     * [RDB](https://github.com/epion-tropic-test-tool/epion-t3-rdb/blob/master/rdb_spec_ja_JP.md)
@@ -26,7 +26,7 @@
     * [AWS Core](https://github.com/epion-tropic-test-tool/epion-t3-aws-core/blob/master/aws-core_spec_ja_JP.md)
     * [AWS A3](https://github.com/epion-tropic-test-tool/epion-t3-aws-s3/blob/master/aws-s3_spec_ja_JP.md)
     * [AWS ECS](https://github.com/epion-tropic-test-tool/epion-t3-aws-ecs/blob/master/aws-ecs_spec_ja_JP.md)
-    * [AWS CloudWatchLogs](https://github.com/epion-tropic-test-tool/epion-t3-aws-cwl/blob/master/aws-cwl_spec_ja_JP.md)
+    * [AWS CloudWatchLogs](https://github.com/epion-tropic-test-tool/epion-t3-aws-cloudwatch-logs/blob/master/aws-cwl_spec_ja_JP.md)
   
 * How To Use
   * [Environment](pages/use/environment.md)
