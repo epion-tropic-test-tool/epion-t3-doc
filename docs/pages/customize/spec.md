@@ -55,7 +55,16 @@ commands:
         type: string
         summary:
           - lang: ja_JP
-            contents: コマンドのID
+            contents: "プロパティの概要を記載"
+flows:
+  # commandsと同一構成です。
+configurations:
+  # commandsと同一構成です。
+messages:
+  - id: メッセージID
+    message:
+      - lang: ja_JP  # (10)
+        contents: "メッセージ内容。バインドも{0}のように定義可能。"
 ```
 
 1. カスタム機能名を定義します。  
@@ -71,6 +80,8 @@ Javaの [Locale](https://docs.oracle.com/javase/jp/8/docs/api/java/util/Locale.h
 1. コマンドの機能の説明を記載します。コマンドに対して複数説明を記載できます。
 1. コマンドの動作をユーザが指定するYAMLと１対１で紐づくModelを定義します。  
 詳細は後述します。
+1. 国際化（i18n）対応を行なっていますので、ロケール名を記載してください。  
+Javaの [Locale](https://docs.oracle.com/javase/jp/8/docs/api/java/util/Locale.html) で扱えるものを指定してください。
 
 #### 文言の表現について
 文言の表現は、国際化（i18n）対応を行なっているため全て [Locale](https://docs.oracle.com/javase/jp/8/docs/api/java/util/Locale.html) とセットで定義します。  
