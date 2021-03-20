@@ -11,19 +11,19 @@
 ```
 root
  |
- |-- configurations                             // 各種機能の設定についての定義を格納するディレクトリ
+ |-- configurations                              // 各種機能の設定についての定義を格納するディレクトリ
  |     |
- |     `-- t3_{Configurations-Unique-ID}.yaml   // 各設定を記載するファイル
+ |     `-- et3_{Configurations-Unique-ID}.yaml   // 各設定を記載するファイル
  |
- |-- customs                                    // 利用するカスタム機能の定義
+ |-- customs                                     // 利用するカスタム機能の定義
  |     |
- |     `-- t3_custom.yaml
+ |     `-- et3_custom.yaml
  |
- |-- parts                                      // 複数のテストシナリオで使うコマンド定義をパーツ化し格納するディレクトリ
+ |-- parts                                       // 複数のテストシナリオで使うコマンド定義をパーツ化し格納するディレクトリ
  |     |
  |     `-- {Parts-Unique-ID}
  |           |
- |           |-- t3_{Parts-Unique-ID}.yaml      // 共通的に利用するようなコマンドの定義
+ |           |-- et3_{Parts-Unique-ID}.yaml      // 共通的に利用するようなコマンドの定義
  |           |
  |           |-- data
  |           |     |-- csv_data.csv
@@ -35,13 +35,13 @@ root
  |                 |-- excel_data.xlsx
  |                 `-- etc...
  |
- |-- profiles                                   // 環境毎に異なる値の定義を格納するディレクトリ
+ |-- profiles                                    // 環境毎に異なる値の定義を格納するディレクトリ
  |     |
- |     `-- t3_{ProfileName}.yaml                // 環境毎の具体的な値の定義
+ |     `-- et3_{ProfileName}.yaml                // 環境毎の具体的な値の定義
  |
  |-- scenarios
  |     |
- |     `-- {Scenario-Unique-ID}                 // テストシナリオ
+ |     `-- {Scenario-Unique-ID}                  // テストシナリオ
  |           |
  |           |-- t3_{Scenario-Unique-ID}.yaml
  |           |
@@ -57,7 +57,7 @@ root
  |
  `-- suite
        |
-       `-- t3_{Suites-Unique-ID}.yaml          // 複数のテストシナリオを実行するための定義
+       `-- et3_{Suites-Unique-ID}.yaml          // 複数のテストシナリオを実行するための定義
 
 ```
 
