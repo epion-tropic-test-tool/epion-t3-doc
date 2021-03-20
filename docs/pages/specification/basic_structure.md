@@ -130,6 +130,22 @@ commands :
 ### Configurations
 
 ### Variables
+Variablesはシナリオ上で変数を定義するためのものです。  
+変数としての機能は、シナリオ上に記載するだけの機能ではなく動的な値を管理するためのものですが、  
+シナリオの中でのみ固定的に定義したい変数がある場合は、このセクションで記載します。
+
+```yaml
+variables:
+  global:
+    globalVariableKey: glovalVariableValue
+  scenario:
+    scenarioVariableKey: scenarioVariableValue
+```
+
+機能として、グローバル変数（global）も用意はしていますが、  
+シナリオの複雑性や意図せず変数が利用されることなどが発生するため極力利用をしないようにして下さい。
+
+
 
 ### Profiles
 プロファイルは`ETTT`を複数環境で実行する際に環境毎に変化させたい値を管理するための機能です。
