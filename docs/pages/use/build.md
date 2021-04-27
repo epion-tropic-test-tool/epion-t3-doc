@@ -1,6 +1,6 @@
 # Project
 
-テストを行うためには、シナリオを管理するためのプロジェクトを作成します。  
+`ETTT` を利用するには、シナリオを管理するためのプロジェクトを作成します。  
 プロジェクトは、[Basic Directory Structure](/pages/specification/basic_directory_structure) で定義したシナリオ体型に
 `ETTT` を実行するためのライブラリや実行ファイル等を組み合わせたものになります。（実行プロジェクト）
 `ETTT` では `Gradle` or `Maven` をベースとした実行プロジェクトを推奨しています。
