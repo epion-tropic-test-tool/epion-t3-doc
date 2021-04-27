@@ -13,9 +13,11 @@
 |com.epion_t3|[epion-t3-rdb](https://github.com/epion-tropic-test-tool/epion-t3-rdb/blob/master/rdb_spec_ja_JP.md)|com.epion_t3.rdb|RDBへのアクセスやアサーションを行う機能|
 |com.epion_t3|[epion-t3-ssh](https://github.com/epion-tropic-test-tool/epion-t3-ssh/blob/master/ssh_spec.md)|com.epion_t3.ssh|SSH関連の機能|
 |com.epion_t3|[epion-t3-selenium](https://github.com/epion-tropic-test-tool/epion-t3-selenium/blob/master/selenium_spec.md)|com.epion_t3.selenium|Selenium関連の機能|
-|com.epion_t3|[epion-t3-snowflake](https://github.com/epion-tropic-test-tool/epion-t3-snowflake/blob/master/snowflake_spec_ja_JP.md)|com.epion_t3.snowflake|Snowflake関連の機能|
 |com.epion_t3|[epion-t3-aws-core](https://github.com/epion-tropic-test-tool/epion-t3-aws-core/blob/master/aws-core_spec_ja_JP.md)|com.epion_t3.aws.core|AWSアクセスの基礎機能|
 |com.epion_t3|[epion-t3-aws-s3](https://github.com/epion-tropic-test-tool/epion-t3-aws-s3/blob/master/aws-s3_spec_ja_JP.md)|com.epion_t3.aws.s3|AWS S3アクセス関連の機能|
+|com.epion_t3|[epion-t3-aws-ecs](https://github.com/epion-tropic-test-tool/epion-t3-aws-ecs/blob/master/aws-ecs_spec_ja_JP.md)|com.epion_t3.aws.ecs|AWS ECSアクセス関連の機能|
+|com.epion_t3|[epion-t3-aws-cloudwatch-logs](https://github.com/epion-tropic-test-tool/epion-t3-aws-cloudwatch-logs/blob/master/aws-cwl_spec_ja_JP.md)|com.epion_t3.aws.cwl|AWS Cloud Watch Logsアクセス関連の機能|
+|com.epion_t3|[epion-t3-aws-sqs](https://github.com/epion-tropic-test-tool/epion-t3-aws-sqs/blob/master/aws-sqs_spec_ja_JP.md)|com.epion_t3.aws.sqs|AWS SQSアクセス関連の機能|
 
 ### GroupId / ArtifactId について
 [How To Use - Project](pages/use/build.md) にて説明していますが、  
