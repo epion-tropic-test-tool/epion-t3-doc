@@ -19,7 +19,7 @@
 
 まずは、自動化したいテストのオペレーションを洗い出す。  
 この作業はテストを4つのPhaseで分割して考えることをオススメする。  
-これは [Four-Phase Test](http://xunitpatterns.com/Four%20Phase%20Test.html) と呼ばれる。
+これは [Four-Phase Test](http://xunitpatterns.com/Four%20Phase%20Test.html) と呼ばれる手法を参考に行う。
 
 |#|Phase|Description|
 |:---|:---|:---|
@@ -33,7 +33,11 @@
 
 |Operation|Description|Phase|
 |:---|:---|:---|
-|RDBレコード削除|||
+|RDBレコード削除|RDBのレコードを削除する。|Setup / Teardown|
+|RDBレコード登録|RDBのレコードを登録する。|Setup / Teardown|
+|ディレクトリクリア|ファイルシステム上のディレクトリ内をクリア|Setup / Teardown|
+|ファイル配置|ファイルシステム上のディレクトリへファイルを配置|Setup / Teardown|
+|アプリケーション実行|試験対象のアプリケーションの実行|Exercise|
 
 
 ## コマンドの充足を洗い出す
