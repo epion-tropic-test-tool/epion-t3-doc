@@ -13,6 +13,7 @@
   * [Basic Directory Structure](pages/specification/basic_directory_structure.md)
   * [Variables](pages/specification/variables.md)
   * [Assert](pages/specification/assert.md)
+  * [Best Practice](pages/specification/best_practices.md)
   
 * Available Commands
   * [Index](pages/specification/command/index.md)
