@@ -1,8 +1,9 @@
 # Assert
 
-`ETTT` は `Assert` という概念があります。
-`Assert` はシステムテストにおける一般的な確認・アサートと同義です。
-ただし、`ETTT` 特有の確認・アサートのお作法が存在するため説明を行います。
+`ETTT` は `Assert` という概念があります。  
+`Assert` はシステムテストにおける一般的な確認・アサートと同義です。  
+[Four-Phase Test](http://xunitpatterns.com/Four%20Phase%20Test.html) では、 `Verify` に属する処理です。  
+`ETTT` にて `Assert` を行うためのお作法が存在するため説明を行います。
 
 ## Assert and Evidence
 

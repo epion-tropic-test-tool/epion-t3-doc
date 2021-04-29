@@ -15,7 +15,7 @@
   * [Assert](pages/specification/assert.md)
   * [Best Practice](pages/specification/best_practices.md)
   
-* Available Commands
+* Available Functions
   * [Index](pages/specification/command/index.md)
     
 * How To Use
