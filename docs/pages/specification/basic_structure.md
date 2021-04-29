@@ -126,7 +126,7 @@ commands :
 1. 対象。汎用的な要素。機能によって利用するかしないかが異なります。
 1. 値。汎用的な要素。機能によって利用するかしないかが異なります。
 
-コマンドの一覧や、記載方法については [Command Index](pages/specification/command/index.md) を参照してもらいたい。
+コマンドの一覧や、記載方法については [Available Functions - Index](pages/specification/functions/index.md) を参照してもらいたい。
 
 ### Configurations
 設定は、コマンドやFlowを補助するようなものです。  

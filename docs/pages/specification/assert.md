@@ -12,7 +12,7 @@
 これは手作業であろうが自動であろうが試験を行う場合の必然であるからです。  
 従って、`Assert`を行うためには確認対象の `Evidence(証跡)` を用意することを必須としています。  
 
-`ETTT`のコマンドには、`Assert` と `Evidence` については特殊なコマンドとして扱っており、[Command Index](/pages/specification/command/index) においてもどのコマンドが`Assert`と`Evidence`であるかを明記しています。
+`ETTT`のコマンドには、`Assert` と `Evidence` については特殊なコマンドとして扱っており、[Available Functions - Index](/pages/specification/functions/index) においてもどのコマンドが`Assert`と`Evidence`であるかを明記しています。
 `Assert`系のコマンドでは全て`Evidence`を参照することになりますが、その参照方法にも基本方針があります。その方法は`Evidence`を取得した`FlowID`を指定することです。
 
 #### 例：テキストファイルの場合

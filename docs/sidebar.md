@@ -16,7 +16,7 @@
   * [Best Practice](pages/specification/best_practices.md)
   
 * Available Functions
-  * [Index](pages/specification/command/index.md)
+  * [Index](pages/specification/functions/index.md)
     
 * How To Use
   * [Environment](pages/use/environment.md)

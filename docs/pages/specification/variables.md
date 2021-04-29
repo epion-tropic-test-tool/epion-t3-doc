@@ -33,7 +33,7 @@ REST-APIを複数回実行するようなシナリオの場合、
 各種スコープ変数への値を格納することを`Store(ストア)`といいます。
 `Store` を行うためにはシナリオへ直接記載する方法と専用コマンドを利用する方法があります。  
 シナリオへ直接記載する方法は、[BasicStructure](/pages/specification/basic_structure)を参照してください。  
-専用コマンドは [Command Index](pages/specification/command/index.md) を参照してください。  
+専用コマンドは [Available Functions - Index](pages/specification/functions/index.md) を参照してください。  
 
 #### Get & Use Variables
 
