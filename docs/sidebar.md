@@ -13,7 +13,6 @@
   * [Basic Directory Structure](pages/specification/basic_directory_structure.md)
   * [Variables](pages/specification/variables.md)
   * [Assert](pages/specification/assert.md)
-  * [Best Practice](pages/specification/best_practices.md)
   
 * Available Functions
   * [Index](pages/specification/functions/index.md)
@@ -23,6 +22,7 @@
   * [Project](pages/use/build.md)
   * [Run](pages/use/run.md)
   * [Result](pages/use/result.md)
+  * [Best Practice](pages/use/best_practices.md) __<span style="color:red">New!!<span>__
 
 * How To Customize
   * [Overview](pages/customize/overview.md)
