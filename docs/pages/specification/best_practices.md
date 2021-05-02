@@ -84,9 +84,58 @@
 
 ### 共通的に使えるコマンドのパーツ化
 
-複数のテスト対象が存在したとしても、全てのテストが行う処理であったり、何割かのテストが共通的に使用するようなコマンドが出てくることが予測されます。  
+複数のテスト対象が存在したとしても、全てのテストが行う処理であったり、  
+何割かのテストが共通的に使用するようなコマンドが出てくることが予測されます。  
 そうしたコマンドを共通的に用意しておいて、各シナリオには手を加えなくとも利用できるようにしておくことがテストシナリオの作成やメンテナンスにかかるコストを低減させるために必須です。
 
+コマンドの共通化は、コマンドのパラメータをVariable化することで簡単に行なえます。  
+変数は、`scenarioスコープ` にすることが重要です。  
+また、パラメータが外部ファイルである場合には、  
+シナリオディレクトリからの相対パスとすることが重要です。
+
+例を示します。
+
+scenario_dir/parts/et3_parts.yaml
+```yaml
+t3: "1.0"
+info:
+  id: "parts"
+  version: "1.0"
+commands:
+  # 相対パスの例
+  - id: "CMD-OPE-STP-010"
+    command: "ExecuteRdbScript"
+    summary: "RDBのレコードを削除する"
+    rdbConnectConfigRef: "configuration-rdb@rdb-connection-config"
+    value: "data/rdb-command-010/delete.sql"
+  # パラメータのVariable化の例
+  - id: "CMD-OPE-EXP-010"
+    command: "ExecuteLocalCommand"
+    summary: "Javaコマンドを実行する"
+    target: "java"
+    args:
+      - "${scenario.arg1}"
+      - "${scenario.arg2}"
+```
+
+scenario_dir/scenarios/{test_kind}/{test_function}/{test_no}/et3_scenario.yaml
+```yaml
+t3: "1.0"
+info:
+  id: "{test_kind}-{test_function}-{test_no}"
+  version: "1.0"
+flows:
+  - id: "OPE-STP-010"
+    type: "CommandExecute"
+    ref: "parts@CMD-OPE-STP-010" # partsシナリオのコマンドを参照する
+  - id: "OPE-EXP-010"
+    type: "CommandExecute"
+    ref: "parts@CMD-OPE-EXP-010" # partsシナリオのコマンドを参照する
+variables:
+  scenario:
+    arg1: "parameter1" # variablesの定義はシナリオ毎に変化しても同一コマンドを参照して利用可能
+    arg2: "parameter2"
+```
 
 
 ## シナリオパーツ作成
