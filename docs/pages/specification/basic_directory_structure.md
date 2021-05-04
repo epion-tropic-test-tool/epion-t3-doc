@@ -55,10 +55,9 @@ root
  |                 |-- excel_data.xlsx
  |                 `-- etc...
  |
- `-- suite
+ `-- suites
        |
        `-- et3_{Suites-Unique-ID}.yaml          // 複数のテストシナリオを実行するための定義
-
 ```
 
 ### Configurations

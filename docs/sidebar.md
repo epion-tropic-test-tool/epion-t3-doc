@@ -22,7 +22,7 @@
   * [Project](pages/use/build.md)
   * [Run](pages/use/run.md)
   * [Result](pages/use/result.md)
-  * [Best Practice](pages/use/best_practices.md) __<span style="color:red">New!!<span>__
+  * [Best Practice](pages/use/best_practices.md) <span style="color:red">New!<span>
 
 * How To Customize
   * [Overview](pages/customize/overview.md)
